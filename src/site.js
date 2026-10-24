@@ -60,11 +60,20 @@ module.exports = {
 
   // Carriers shown in the logo strip and claims table. Add logo files to /src/assets/img/carriers/
   carriers: [
-    { name: "Travelers", claims: "[Claims phone]", url: "https://www.travelers.com/claims" },
-    { name: "[Carrier]", claims: "[Claims phone]", url: "" },
-    { name: "[Carrier]", claims: "[Claims phone]", url: "" },
-    { name: "[Carrier]", claims: "[Claims phone]", url: "" },
-    { name: "[Carrier]", claims: "[Claims phone]", url: "" },
+    // name (shown in the carrier strip + claims table), claims = 24/7 claims phone ("[...]" = hidden, shows "See your policy ID card"),
+    // url = carrier's official claims page, note = extra line in the claims table. Numbers checked against carrier sites Oct 2026.
+    { name: "Progressive", claims: "800-776-4737", url: "https://www.progressive.com/claims/" },
+    { name: "Travelers", claims: "800-252-4633", url: "https://www.travelers.com/claims/file-claim", note: "Business policies: 800-238-6225" },
+    { name: "Liberty Mutual", claims: "800-225-2467", url: "https://www.libertymutual.com/claims-center", note: "Small business: 844-325-2467" },
+    { name: "Safeco", claims: "800-332-3226", url: "https://www.safeco.com/claims" },
+    { name: "Nationwide", claims: "800-421-3535", url: "https://www.nationwide.com/personal/insurance/claims/" },
+    { name: "GEICO", claims: "800-841-3000", url: "https://www.geico.com/claims/" },
+    { name: "The Hartford", claims: "800-327-3636", url: "https://www.thehartford.com/claims", note: "Business, commercial auto & workers' comp" },
+    { name: "BHHC", claims: "800-661-6029", url: "https://bhhc.com/workers-compensation/claim-services/report-a-claim/", note: "Berkshire Hathaway Homestate · workers' comp claims" },
+    { name: "Homeowners of America", claims: "866-407-9896", url: "https://hoaic.com/claims-commitment/" },
+    { name: "ARI Insurance", claims: "[Claims phone]", url: "", note: "American Risk Insurance" },
+    { name: "Hallmark", claims: "800-486-4255", url: "https://www.hallmarkgrp.com/", note: "Personal lines claims" },
+    { name: "Falcon Insurance", claims: "800-929-3252", url: "https://falconinsgroup.com/en/Claims/ReportClaim" },
   ],
 
   team: [
