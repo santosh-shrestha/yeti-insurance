@@ -54,7 +54,7 @@ const homeFaq = [
   ["Does Yeti Insurance serve all of Texas?", "Yes. Our office is in Irving, and we write commercial, home and auto policies for clients throughout Texas. Most service is handled by phone and email, and you're always welcome at our Las Colinas office."],
   ["What is an independent insurance agency?", "An independent agency works with multiple insurance companies, so we can compare options and recommend the best fit rather than selling one company's products."],
   ["Can I bundle home and auto insurance?", "Yes. Most carriers offer a multi-policy discount when you bundle home and auto, and you'll have one agent for both."],
-  ["How fast can I get a quote?", "Most quotes are ready within one business day, and simple home and auto quotes are often ready the same day."],
+  ["How fast can I get a quote?", "Many quotes are ready within one business day. Timing depends on the coverage and how quickly carriers respond."],
 ];
 
 add({
@@ -64,7 +64,7 @@ add({
   schema: [C.faqSchema(homeFaq), { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url + "/" }],
   body: `
 <section class="hero" style="padding:0">
-  <div class="hero-bg"><video autoplay muted loop playsinline preload="none" poster="/assets/img/hero-poster.jpg" aria-hidden="true"><source src="/assets/media/hero.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></div>
+  <div class="hero-bg"></div>
   <div class="wrap">
     <div>
       <p class="kicker">Serving all of Texas · Since ${site.founded}</p>
@@ -124,7 +124,7 @@ ${C.reviewsSection()}
 </div></section>
 
 <section><div class="wrap split">
-  <div class="photo rv"><img src="/assets/img/office-team.jpg" alt="The Yeti Insurance team at the Irving office" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
+  <div class="photo rv">${C.hasAsset("/assets/img/office-team.jpg") ? `<img src="/assets/img/office-team.jpg" alt="The Yeti Insurance team" loading="lazy" width="800" height="1000">` : ""}<div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
   <div class="rv"><p class="kicker">Why Yeti Insurance</p><h2>A local agency with statewide reach</h2>
    <p class="lead">For ${new Date().getFullYear() - site.founded} years we've helped Texans make clear, confident decisions about their coverage.</p>
    ${C.pointsList([["We work for you, not the carrier", "We compare multiple carriers and recommend what fits your needs and budget."], ["One dedicated agent", "You'll know who to call, and that person will know your account."], ["Support at claim time", "We help you report claims and follow up with the carrier until they're resolved."], ["Annual coverage reviews", "Each year we review your policies as your business, home and family change."]], C.icon.check)}
@@ -136,7 +136,7 @@ ${C.reviewsSection()}
   <ol class="process">
    <li class="rv"><b>01</b><h3>Tell us what you need</h3><p>Start a quote online or call us. It takes about two minutes.</p></li>
    <li class="rv"><b>02</b><h3>We compare carriers</h3><p>Your agent shops multiple carriers and explains the differences.</p></li>
-   <li class="rv"><b>03</b><h3>You choose</h3><p>Pick the coverage you like best. Many policies can start the same day.</p></li>
+   <li class="rv"><b>03</b><h3>You choose</h3><p>Pick the coverage you like best, and we'll help you put it in place.</p></li>
   </ol>
 </div></section>
 
@@ -173,7 +173,7 @@ function coverageBody({ h1, intro, crumbsLabel, covers, sections = [], body = ""
 </div></section>
 ${children.length ? `<section style="background:var(--bg)"><div class="wrap"><p class="kicker rv">Explore</p><h2 class="rv">${crumbsLabel} insurance by type</h2><div class="actions" style="margin-top:32px">${children.map(([u, t, d]) => `<a class="action rv" href="${u}"><span class="action-t">${t}</span><p>${d}</p><span class="arrow" aria-hidden="true">→</span></a>`).join("")}</div></div></section>` : ""}
 ${C.reviewsSection()}
-${C.faqSection(faq, `${crumbsLabel} insurance FAQ`)}`;
+${C.faqSection(faq, `${crumbsLabel.replace(/ Insurance$/, "")} insurance FAQ`)}`;
 }
 
 for (const key of Object.keys(hubs)) {
@@ -184,7 +184,7 @@ for (const key of Object.keys(hubs)) {
     breadcrumbs: [[h.path, h.label]],
     schema: [serviceSchema(h.label, h.path, h.description), C.faqSchema(h.faq)],
     body: coverageBody({ h1: h.h1, intro: h.intro, crumbsLabel: h.short, covers: h.covers, sections: h.sections, who: h.who, faq: h.faq, coverage: h.coverage, kicker: `${h.label} · Statewide`,
-      children: kids.map(s => [subUrl(s), s.short, s.intro.split(". ")[0] + "."]),
+      children: kids.map(s => [subUrl(s), s.short, s.intro.split(". ")[0].replace(/\.$/, "") + "."]),
       related: Object.values(hubs).filter(x => x !== h).map(x => [x.path, x.label]) }),
   });
 }
@@ -215,10 +215,10 @@ add({
     ${site.milestones.filter(([y, t]) => !C.isPH(y) && !C.isPH(t)).map(([y, t]) => `<li><div><strong>${y}.</strong> ${t}</div></li>`).join("")}
     <li><div><strong>${new Date().getFullYear()}.</strong> A decade of service, rated ${site.googleRating} on Google.</div></li>
    </ol></div>
-  <div class="photo rv"><img src="/assets/img/founders.jpg" alt="Yeti Insurance founders" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
+  <div class="photo rv">${C.hasAsset("/assets/img/founders.jpg") ? `<img src="/assets/img/founders.jpg" alt="The Yeti Insurance team in Irving, Texas" loading="lazy" width="800" height="1000">` : ""}<div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
 </div></section>
 <section style="background:var(--bg)"><div class="wrap"><p class="kicker rv">How we work</p><h2 class="rv">What you can expect from us</h2>
-  ${C.pointsList([["Honest advice", "We explain coverage in plain English, including what isn't covered."], ["Real choices", "We compare multiple carriers instead of selling one company's products."], ["Responsive service", "Certificates, ID cards and policy changes are usually handled the same business day."], ["Claim advocacy", "We help you report claims and follow up with the carrier."]])}
+  ${C.pointsList([["Honest advice", "We explain coverage in plain English, including what isn't covered."], ["Real choices", "We compare multiple carriers instead of selling one company's products."], ["Responsive service", "Certificates, ID cards and policy changes are handled promptly, often the same business day."], ["Claim advocacy", "We help you report claims and follow up with the carrier."]])}
 </div></section>
 <section><div class="wrap"><p class="kicker rv">Our team</p><h2 class="rv">Meet your agents</h2>${C.teamGrid()}<p style="margin-top:28px"><a class="link" href="/about/team/">Full team page →</a></p></div></section>
 ${C.credStrip()}
@@ -266,7 +266,7 @@ add({
   title: "Client Service Center | Payments, COIs, ID Cards | Yeti Insurance",
   description: "Existing Yeti Insurance clients: make a payment, request a certificate of insurance or ID cards, change your policy or report a claim.",
   breadcrumbs: [["/client-service/", "Client Service"]],
-  body: `${C.smallHero({ kicker: "Client service", h1: "Client Service Center", sub: "Everything existing clients need in one place. Most requests are handled the same business day.", ctas: false })}
+  body: `${C.smallHero({ kicker: "Client service", h1: "Client Service Center", sub: "Everything existing clients need in one place. We handle most requests promptly, often the same business day.", ctas: false })}
 <section><div class="wrap">
   <div class="actions">${ACTIONS.map(([t, d, a]) => a.startsWith("/") ? `<a class="action rv" href="${a}"><span class="action-t">${t}</span><p>${d}</p><span class="arrow" aria-hidden="true">→</span></a>` : a === "claim" ? `<button type="button" class="action rv" data-open="claim-modal"><span class="action-t">${t}</span><p>${d}</p><span class="arrow" aria-hidden="true">→</span></button>` : `<button type="button" class="action rv" data-request="${a}"><span class="action-t">${t}</span><p>${d}</p><span class="arrow" aria-hidden="true">→</span></button>`).join("")}</div>
   <div class="split top" style="margin-top:72px">

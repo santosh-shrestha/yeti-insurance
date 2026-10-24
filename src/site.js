@@ -2,7 +2,11 @@
  * SITE SETTINGS — edit this file to update business details everywhere on the site.
  * Values in [brackets] are placeholders that must be confirmed before launch.
  */
+// Search engines index the site only when it is served from the real domain.
+// On Netlify, process.env.URL is the site's primary URL (e.g. https://yetiinsu.netlify.app until the domain is switched).
+const DEPLOY_URL = process.env.URL || "";
 module.exports = {
+  indexable: !DEPLOY_URL || /yetiinsu\.com/.test(DEPLOY_URL),
   url: "https://www.yetiinsu.com",          // production domain, no trailing slash
   name: "Yeti Insurance Agency",
   legalName: "Yeti Insurance Agency LLC",

@@ -3,6 +3,9 @@ const site = require("./site");
 
 /** A value is a placeholder if it's empty or still wrapped in [brackets]. Placeholders are never shown on the live site. */
 const isPH = v => v == null || String(v).trim() === "" || /\[[^\]]*\]/.test(String(v));
+const fs = require("fs"), path = require("path");
+/** True if an /assets/... file exists in src (so we never output links to missing images) */
+const hasAsset = url => !!url && fs.existsSync(path.join(__dirname, "assets", url.replace(/^\/assets\//, "")));
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const tel = `<a href="tel:${site.phoneE164}">${site.phone}</a>`;
 const formAction = site.formEndpoint ? ` action="${site.formEndpoint}"` : ` action="/thank-you/"`;
@@ -179,7 +182,7 @@ const credStrip = () => `<div class="cred"><div class="wrap">
 const carrierStrip = () => site.carriers.filter(c => !isPH(c.name)).length < 3 ? "" : `<div class="carriers"><div class="wrap"><p>We compare coverage from leading insurance companies, including</p>
   <ul class="logos">${site.carriers.filter(c => !isPH(c.name)).map(c => c.logo ? `<li><img src="${c.logo}" alt="${c.name}" width="140" height="36" loading="lazy"></li>` : `<li>${c.name}</li>`).join("")}</ul></div></div>`;
 
-const teamGrid = (h = "h3") => `<ul class="team-grid">${site.team.map(t => `<li class="person rv"><div class="ph"><span aria-hidden="true">${t.initials}</span><img src="${t.photo}" alt="${t.name}, ${t.role}" loading="lazy" width="400" height="400" onerror="this.remove()"></div><${h}>${t.name}</${h}><p class="role">${t.role}</p>${isPH(t.license) ? "" : `<p class="lic">TX License #${t.license}</p>`}<a href="tel:${t.tel}">${t.phone}</a><a href="mailto:${t.email}">${t.email}</a></li>`).join("")}</ul>`;
+const teamGrid = (h = "h3") => `<ul class="team-grid">${site.team.map(t => `<li class="person rv"><div class="ph"><span aria-hidden="true">${t.initials}</span>${hasAsset(t.photo) ? `<img src="${t.photo}" alt="${t.name}, ${t.role}" loading="lazy" width="400" height="400">` : ""}</div><${h}>${t.name}</${h}><p class="role">${t.role}</p>${isPH(t.license) ? "" : `<p class="lic">TX License #${t.license}</p>`}<a href="tel:${t.tel}">${t.phone}</a><a href="mailto:${t.email}">${t.email}</a></li>`).join("")}</ul>`;
 
 const trustBar = () => `<div class="trustbar"><div class="wrap">
   <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a1f2b" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3.5v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Licensed by the Texas Department of Insurance · <a href="${site.licenseVerifyUrl}" target="_blank" rel="noopener">Verify</a></span>
@@ -194,4 +197,4 @@ function pointsList(items, ic = icon.check, h = "h3") {
   return `<ul class="points">${items.map(([t, d]) => `<li class="rv">${ic}<div><${h}>${t}</${h}><p>${d}</p></div></li>`).join("")}</ul>`;
 }
 
-module.exports = { REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
+module.exports = { hasAsset, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };

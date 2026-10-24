@@ -48,7 +48,9 @@ const urls = built
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 
 // ---- robots.txt ----
-write("robots.txt", `User-agent: *\nAllow: /\nDisallow: /thank-you/\n\nSitemap: ${site.url}/sitemap.xml\n`);
+write("robots.txt", site.indexable
+  ? `User-agent: *\nAllow: /\nDisallow: /thank-you/\n\nSitemap: ${site.url}/sitemap.xml\n`
+  : `# Temporary preview address — not indexed until www.yetiinsu.com is live\nUser-agent: *\nDisallow: /\n`);
 
 // ---- Netlify redirects (old Wix URLs → new pages) ----
 write("_redirects", [

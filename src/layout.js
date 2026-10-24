@@ -91,7 +91,7 @@ function layout(page) {
 <title>${page.title}</title>
 <meta name="description" content="${C.esc(page.description)}">
 <link rel="canonical" href="${canonical}">
-${page.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
+${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
 <meta property="og:type" content="${page.ogType || "website"}">
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:title" content="${C.esc(page.title)}">
