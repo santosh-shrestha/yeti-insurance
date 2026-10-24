@@ -50,6 +50,14 @@ module.exports = {
    */
   formEndpoint: "",
 
+  /**
+   * GOOGLE SHEET — every form submission is also copied to the "Yeti Website Leads" sheet.
+   * Paste the Apps Script Web App URL (ends in /exec) and the same secret token used in the script.
+   * Leave sheetsUrl empty to turn this off. See integrations/README.md.
+   */
+  sheetsUrl: "",
+  sheetsToken: "",
+
   // Carriers shown in the logo strip and claims table. Add logo files to /src/assets/img/carriers/
   carriers: [
     { name: "Travelers", claims: "[Claims phone]", url: "https://www.travelers.com/claims" },

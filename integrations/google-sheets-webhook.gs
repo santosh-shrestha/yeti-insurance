@@ -31,9 +31,16 @@ function doPost(e) {
   try {
     if (!e || !e.parameter || e.parameter.token !== SECRET_TOKEN) return json_({ ok: false, error: "unauthorized" });
 
-    const body = JSON.parse(e.postData.contents);          // Netlify outgoing webhook payload
-    const form = String(body.form_name || "unknown");
-    const data = body.data || {};
+    // Two ways in: (1) directly from the website forms (form-encoded), (2) Netlify webhook (JSON)
+    let body, data, form;
+    if (e.postData && /json/i.test(e.postData.type || "")) {
+      body = JSON.parse(e.postData.contents); data = body.data || {}; form = String(body.form_name || "unknown");
+    } else {
+      data = Object.assign({}, e.parameter); delete data.token;
+      form = String(data["form-name"] || "unknown"); body = { created_at: new Date().toISOString(), id: "web" };
+    }
+    if (data.company_website) return json_({ ok: true, skipped: "spam" });   // honeypot filled → bot
+    if (!COLUMNS[form]) return json_({ ok: false, error: "unknown form" });
     delete data["form-name"]; delete data.company_website; delete data.ip; delete data.user_agent; delete data.referrer;
     if (data.coverage) data.coverage = COVERAGE_LABELS[data.coverage] || data.coverage;
 
@@ -53,6 +60,7 @@ function doPost(e) {
       Object.keys(data).forEach(k => values[FIELD_LABELS[k] || k] = data[k]);
       values["Received"] = body.created_at ? new Date(body.created_at) : new Date();
       values["Netlify ID"] = body.id || "";
+      Object.keys(values).forEach(k => { if (typeof values[k] === "string" && /^[=+\-@]/.test(values[k])) values[k] = "'" + values[k]; }); // block spreadsheet formula injection
 
       sheet.appendRow(headers.map(h => values[h] !== undefined ? values[h] : ""));
     } finally { lock.releaseLock(); }

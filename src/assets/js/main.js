@@ -144,6 +144,12 @@
           const r = $(".ref b", done); if (r) r.textContent = ref(form.dataset.ref || "YQ");
           form.hidden = true; done.hidden = false; done.focus && done.focus();
         }
+        // Copy the submission to the Google Sheet (fire-and-forget; never blocks the visitor)
+        const sh = document.body.dataset.sheets;
+        if (sh && /^https?:$/.test(location.protocol)) {
+          const p = new URLSearchParams(fd); p.set("token", document.body.dataset.sheetsToken || "");
+          try { navigator.sendBeacon ? navigator.sendBeacon(sh, p) : fetch(sh, { method: "POST", mode: "no-cors", body: p }); } catch (e) {}
+        }
         if (window.dataLayer) window.dataLayer.push({ event: "form_submit", form: form.getAttribute("name") });
       } catch (err) {
         errBox && errBox.classList.add("show");

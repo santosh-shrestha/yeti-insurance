@@ -111,7 +111,7 @@ ${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follo
 ${ld}
 <!-- Analytics: paste Google Analytics 4 / Tag Manager snippet here -->
 </head>
-<body data-hours-open="${site.hours.open}" data-hours-close="${site.hours.close}"${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
+<body data-hours-open="${site.hours.open}" data-hours-close="${site.hours.close}"${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="util"><div class="wrap">
