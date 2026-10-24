@@ -53,7 +53,7 @@ function doPost(e) {
 
     const lock = LockService.getScriptLock(); lock.waitLock(10000);
     try {
-      const ss = SHEET_ID ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+      const ss = SHEET_ID && SHEET_ID.indexOf("PASTE") === -1 ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
       if (!ss) throw new Error("No spreadsheet found. Create the script from the sheet (Extensions → Apps Script) or set SHEET_ID.");
       const sheet = ss.getSheetByName(form) || ss.insertSheet(form);
 
@@ -79,6 +79,14 @@ function doPost(e) {
     console.error(err);
     return json_({ ok: false, error: String(err) });
   }
+}
+
+// Run this from the editor to test the sheet connection (adds one TEST row to the "quote" tab)
+function testWrite() {
+  const fake = { form_name: "quote", id: "test", created_at: new Date().toISOString(),
+    data: { name: "TEST — delete me", phone: "(469) 555-0100", email: "test@example.com", coverage: "auto", zip: "75039", message: "Editor test", page: "/" } };
+  const res = doPost({ parameter: { token: SECRET_TOKEN }, postData: { type: "application/json", contents: JSON.stringify(fake) } });
+  console.log(res.getContent());
 }
 
 // Quick check in the browser: opening the Web App URL shows this message
