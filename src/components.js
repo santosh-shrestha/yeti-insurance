@@ -133,7 +133,7 @@ function serviceForm() {
 
 /* ---------- Page sections ---------- */
 function smallHero({ kicker, h1, sub = "", ctas = true }) {
-  return `<section class="hero hero-sm" style="padding:0"><div class="hero-bg"><img src="/assets/img/hero.jpg" alt="" width="960" height="600"></div><div class="wrap"><div>
+  return `<section class="hero hero-sm" style="padding:0"><div class="hero-bg"></div><div class="wrap"><div>
     {{CRUMBS}}
     <p class="kicker">${kicker}</p><h1>${h1}</h1>${sub ? `<p class="sub">${sub}</p>` : ""}
     ${ctas ? `<div class="ctas"><button type="button" class="btn btn-maroon" data-open="quote-modal">Start a Quote</button><a class="btn btn-ghost" href="tel:${site.phoneE164}">Call ${site.phone}</a></div>${googleBadge()}` : ""}
