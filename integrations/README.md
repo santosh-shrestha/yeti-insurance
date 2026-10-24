@@ -88,3 +88,19 @@ EZLynx doesn't accept website forms directly, but its **Zapier app** can create 
 - **claim-notice** and **service-request** are existing-client requests. They're better as email alerts or Sheet rows than as new EZLynx applicants.
 
 The exact EZLynx actions and required fields depend on your EZLynx account. Run one test submission through the Zap before turning it on.
+
+---
+
+## Live Google reviews on the website
+
+The reviews section loads up to 3 recent reviews, plus the live rating and review count, from `netlify/functions/google-reviews.js`. Until this is set up, or if Google is unreachable, the section shows the static "Rated 4.9 on Google" badge instead.
+
+1. In Google Cloud Console, create a project, enable **Places API (New)** and set up billing. The function caches results for 24 hours, so it calls Google about once a day.
+2. Create an **API key** and restrict it to *Places API (New)*.
+3. Find your **Place ID** with Google's Place ID Finder. Search "Yeti Insurance Agency, Irving". The ID starts with `ChIJ…`.
+4. In Netlify, add two environment variables, then redeploy:
+   - `GOOGLE_PLACES_API_KEY`
+   - `GOOGLE_PLACE_ID`
+5. Check that it works by opening `https://<your-site>/.netlify/functions/google-reviews`. You should see `"ok":true` and a list of reviews.
+
+Google decides which reviews it returns (its 5 "most relevant"). The site shows the first 3 that have text, with the reviewer's name and a link to Google, as Google's attribution rules require.

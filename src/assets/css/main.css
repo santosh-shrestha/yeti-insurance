@@ -592,3 +592,43 @@ section{padding:104px 0}
 .photo.land img{border-radius:var(--radius)}
 /* Home office photo: square on desktop so it balances the text column (towers stay fully in frame) */
 @media(min-width:1001px){.photo.land.fill{aspect-ratio:1/1}.photo.land.fill img{position:absolute;inset:0;height:100%;object-fit:cover;object-position:62% center}}
+
+/* Footer social buttons */
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;list-style:none}
+.social li{padding:0}
+.social a{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#dbe4ee;font-size:13px;font-weight:500;transition:border-color .2s,background .2s,color .2s}
+.social a:hover,.social a:focus-visible{border-color:#fff;background:rgba(255,255,255,.08);color:#fff}
+.social img{display:block}
+.social svg{opacity:.7}
+
+/* Texas map labels */
+.tx-map .tx-l{font:500 10.5px/1 var(--sans);fill:#3a4d63;paint-order:stroke;stroke:#eef2f7;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.tx-map .tx-l.hq{font-weight:700;fill:var(--blue);font-size:11px}
+
+/* Team: wide horizontal cards that fill the row */
+.team-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:28px}
+.person{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 1px 2px rgba(15,42,74,.05);transition:box-shadow .2s,border-color .2s}
+.person:hover{box-shadow:var(--shadow-md);border-color:#d5dde7}
+.person .ph{margin:0}
+.person .pname{font-size:24px;line-height:1.2;margin:0}
+.person .role{margin:6px 0 16px}
+.pcontact{list-style:none;display:grid;gap:8px}
+.pcontact a{display:inline-flex;align-items:center;gap:10px;font-size:14.5px;color:var(--ink,#1c2a3a);overflow-wrap:anywhere}
+.pcontact a svg{color:var(--maroon);flex:none}
+.pcontact a:hover{color:var(--maroon)}
+@media(max-width:1000px){.team-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.person{grid-template-columns:112px minmax(0,1fr);gap:18px;padding:16px;align-items:start}.person .pname{font-size:20px}.person .role{margin-bottom:10px;font-size:13.5px}.pcontact a{font-size:13.5px;gap:8px}}
+
+/* Live Google reviews */
+.live-reviews{margin-top:44px}
+.lr-list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.lr-card{background:#fff;color:var(--body);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.lr-stars{color:#f4b400;letter-spacing:2px;font-size:15px}
+.lr-text{font-size:15px;line-height:1.6;color:var(--ink);flex:1;margin:0}
+.lr-who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.lr-who img{border-radius:50%;flex:none}
+.lr-who .lr-name{display:block;font-weight:600;color:var(--blue);font-size:14px}
+.lr-who small{color:var(--muted);font-size:12.5px}
+.lr-foot{margin-top:18px;font-size:13px;color:#c9d3df}
+.lr-foot a{color:#fff;text-decoration:underline}
+@media(max-width:900px){.lr-list{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px}.lr-list::-webkit-scrollbar{display:none}.lr-card{scroll-snap-align:start;box-shadow:none}}

@@ -40,13 +40,17 @@ const finderData = C.esc(JSON.stringify({ rules: FINDER.map(f => f[1]), pages: f
 const TX_BORDER = [[-103.04,36.5],[-100,36.5],[-100,34.56],[-99.5,34.41],[-99.19,34.21],[-98.6,34.15],[-98.09,34.13],[-97.6,33.96],[-97.15,33.72],[-96.6,33.85],[-96.15,33.84],[-95.6,33.92],[-95.15,33.94],[-94.6,33.68],[-94.04,33.55],[-94.04,33.0],[-94.04,32.0],[-93.82,31.6],[-93.55,31.18],[-93.6,30.65],[-93.72,30.3],[-93.84,29.7],[-94.4,29.55],[-94.76,29.33],[-95.1,29.1],[-95.5,28.82],[-96.0,28.6],[-96.5,28.35],[-96.88,28.05],[-97.15,27.7],[-97.35,27.3],[-97.42,26.8],[-97.3,26.25],[-97.15,25.96],[-97.55,26.0],[-97.95,26.07],[-98.35,26.2],[-98.8,26.36],[-99.1,26.55],[-99.3,27.0],[-99.5,27.5],[-99.85,27.95],[-100.3,28.4],[-100.65,29.05],[-101.05,29.5],[-101.45,29.78],[-101.95,29.8],[-102.4,29.78],[-102.7,29.55],[-102.9,29.2],[-103.15,28.98],[-103.55,29.15],[-104.0,29.4],[-104.5,29.75],[-104.7,30.2],[-105.0,30.68],[-105.55,31.1],[-106.0,31.4],[-106.4,31.75],[-106.63,31.98],[-103.06,32.0]];
 const txProj = ([lon, lat]) => [((lon + 106.7) * 0.857 * 34 + 7).toFixed(1), ((36.55 - lat) * 34 + 16).toFixed(1)];
 const TX_PATH = "M" + TX_BORDER.map(p => txProj(p).join(" ")).join(" L") + " Z";
-const TX_CITIES = [["Amarillo", -101.83, 35.22], ["Lubbock", -101.85, 33.58], ["El Paso", -106.44, 31.76], ["Dallas", -96.8, 32.78], ["Fort Worth", -97.33, 32.75], ["Tyler", -95.3, 32.35], ["Austin", -97.74, 30.27], ["Houston", -95.37, 29.76], ["San Antonio", -98.49, 29.42], ["Corpus Christi", -97.4, 27.8], ["Laredo", -99.51, 27.53], ["Irving (our office)", -96.95, 32.81, 1]];
+// [name, lon, lat, label side ("r" | "l"), hq]. Dallas and Fort Worth share the office marker so dots don't overlap.
+const TX_CITIES = [["Amarillo", -101.83, 35.22, "r"], ["Lubbock", -101.85, 33.58, "r"], ["El Paso", -106.44, 31.76, "r"], ["Tyler", -95.3, 32.35, "l"], ["Austin", -97.74, 30.27, "l"], ["Houston", -95.37, 29.76, "l"], ["San Antonio", -98.49, 29.42, "l"], ["Corpus Christi", -97.4, 27.8, "r"], ["Laredo", -99.51, 27.53, "l"], ["Dallas–Fort Worth", -96.95, 32.81, "l", 1]];
 const texasMap = `<div class="tx-map rv">
-  <svg viewBox="0 0 400 400" role="img" aria-label="Map of Texas showing cities where Yeti Insurance serves clients">
+  <svg viewBox="0 0 400 400" role="img" aria-label="Map of Texas: our office is in Irving, in Dallas–Fort Worth, and we serve clients statewide including Houston, Austin, San Antonio, El Paso, Lubbock, Amarillo, Corpus Christi, Laredo and Tyler">
     <path d="${TX_PATH}" fill="#eef2f7" stroke="#0f2a4a" stroke-width="1.6" stroke-linejoin="round"/>
-    ${TX_CITIES.map(([c, lon, lat, hq]) => { const [x, y] = txProj([lon, lat]); return hq
-      ? `<g class="dot-g"><circle cx="${x}" cy="${y}" r="15" fill="#0f2a4a" opacity=".12"/><circle class="dot hq" cx="${x}" cy="${y}" r="7" data-c="${c}" tabindex="0"><title>${c}</title></circle></g>`
-      : `<circle class="dot" cx="${x}" cy="${y}" r="5.5" data-c="${c}" tabindex="0"><title>${c}</title></circle>`; }).join("")}
+    ${TX_CITIES.map(([c, lon, lat, side, hq]) => { const [x, y] = txProj([lon, lat]).map(Number);
+      const lx = side === "l" ? x - (hq ? 14 : 10) : x + (hq ? 14 : 10), anchor = side === "l" ? "end" : "start";
+      const label = `<text class="tx-l${hq ? " hq" : ""}" x="${lx}" y="${y + 4}" text-anchor="${anchor}">${hq ? "Irving · Dallas–Fort Worth" : c}</text>`;
+      return hq
+      ? `<g class="dot-g"><circle cx="${x}" cy="${y}" r="15" fill="#0f2a4a" opacity=".12"/><circle class="dot hq" cx="${x}" cy="${y}" r="7" data-c="Our office: Irving (Dallas–Fort Worth)" tabindex="0"><title>Our office: Irving (Dallas–Fort Worth)</title></circle>${label}</g>`
+      : `<circle class="dot" cx="${x}" cy="${y}" r="5" data-c="${c}" tabindex="0"><title>${c}</title></circle>${label}`; }).join("")}
   </svg><div class="tx-tip" aria-hidden="true"></div>
   <p class="tx-legend"><span class="lg hq"></span>Our Irving office <span class="lg"></span>Cities we serve</p></div>`;
 

@@ -248,4 +248,34 @@
       d.addEventListener("mouseleave", hide); d.addEventListener("blur", hide);
     });
   }
+
+  /* ---------- Live Google reviews (Netlify function; section keeps its static badge if unavailable) ---------- */
+  const live = $(".live-reviews");
+  if (live && "fetch" in window) {
+    fetch(live.dataset.src, { headers: { Accept: "application/json" } })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (!d || !d.ok) return;
+        const sec = live.closest("section");
+        if (d.count) $$(".g-count", sec).forEach(e => e.textContent = d.count + " reviews · ");
+        if (d.rating) $$(".g-card b", sec).forEach(e => e.textContent = Number(d.rating).toFixed(1));
+        if (d.url) $$(".g-card, .lr-foot a", sec).forEach(a => a.href = d.url);
+        const list = $(".lr-list", live), el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+        (d.reviews || []).slice(0, 3).forEach(rv => {
+          const li = el("li", "lr-card"), stars = el("div", "lr-stars", "★★★★★".slice(0, Math.round(rv.rating)) + "☆☆☆☆☆".slice(0, 5 - Math.round(rv.rating)));
+          stars.setAttribute("aria-label", rv.rating + " out of 5 stars");
+          const txt = rv.text.length > 280 ? rv.text.slice(0, 280).replace(/\s+\S*$/, "") + "…" : rv.text;
+          const who = el("div", "lr-who");
+          if (rv.photo) { const img = el("img"); img.src = rv.photo; img.alt = ""; img.width = img.height = 36; img.loading = "lazy"; img.referrerPolicy = "no-referrer"; who.append(img); }
+          const meta = el("div"), name = rv.authorUrl ? el("a", "lr-name", rv.author) : el("span", "lr-name", rv.author);
+          if (rv.authorUrl) { name.href = rv.authorUrl; name.target = "_blank"; name.rel = "noopener"; }
+          meta.append(name, el("small", null, (rv.when ? rv.when + " · " : "") + "Google review"));
+          who.append(meta);
+          li.append(stars, el("p", "lr-text", "“" + txt + "”"), who);
+          list.append(li);
+        });
+        if (list.children.length) live.hidden = false;
+      })
+      .catch(() => {});
+  }
 })();

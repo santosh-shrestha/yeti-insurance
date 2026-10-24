@@ -142,6 +142,7 @@ ${page.noCta ? "" : C.ctaBand()}
       <p style="margin-top:18px;max-width:300px">Independent insurance agency serving Texas businesses and families since ${site.founded}.</p>
       <address>${site.address.street}<br>${site.address.city}, ${site.address.state} ${site.address.zip}<br><a href="tel:${site.phoneE164}" style="color:#fff">${site.phone}</a><br>${site.hours.label}</address>
       <p style="margin-top:14px"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener" style="color:#fff"><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google · Read reviews</a></p>
+      ${C.socialLinks()}
     </div>
     <div><h2>Insurance</h2><ul>
       <li><a href="/commercial-insurance-texas/">Commercial Insurance</a></li>
@@ -166,12 +167,11 @@ ${page.noCta ? "" : C.ctaBand()}
       <li><a href="/resources/">Resources</a></li>
       <li><a href="/careers/">Careers</a></li>
       <li><a href="/contact/">Contact</a></li>
-      <li><a href="${site.social.facebook}" target="_blank" rel="noopener">Facebook</a> · <a href="${site.social.instagram}" target="_blank" rel="noopener">Instagram</a></li>
     </ul></div>
   </div>
   <div class="fbottom">
-    <span>© ${new Date().getFullYear()} ${site.legalName}. All rights reserved. Licensed by the Texas Department of Insurance${C.isPH(site.license) ? "" : `, Agency License No. ${site.license}`} · <a href="${site.licenseVerifyUrl}" target="_blank" rel="noopener" style="text-decoration:underline">Verify our license</a></span>
-    <span><a href="/privacy/">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms/">Terms of Use</a> &nbsp;·&nbsp; <a href="/accessibility/">Accessibility</a> &nbsp;·&nbsp; <a href="/producer-compensation-disclosure/">Producer Compensation Disclosure</a> &nbsp;·&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    <span>© ${new Date().getFullYear()} ${site.legalName}. All rights reserved. Licensed by the Texas Department of Insurance${C.isPH(site.license) ? "" : `, Agency License No. ${site.license}`}.</span>
+    <span><a href="/privacy/">Privacy Policy</a> &nbsp;·&nbsp; <a href="/terms/">Terms of Use</a> &nbsp;·&nbsp; <a href="/accessibility/">Accessibility</a> &nbsp;·&nbsp; <a href="/producer-compensation-disclosure/">Producer Compensation Disclosure</a></span>
   </div>
   <p class="disclaimer">Coverage descriptions on this site are general information only and do not modify any insurance policy. Coverage, availability and pricing are subject to carrier underwriting and the terms of each policy issued. Not all coverages are available from all carriers. ${C.isPH(site.googleReviewCount) || C.isPH(site.googleRatingDate) ? "" : `Google rating reflects ${site.googleReviewCount} reviews as of ${site.googleRatingDate}. `}For customers with hearing or speech disabilities, dial 7-1-1.</p>
 </div></footer>

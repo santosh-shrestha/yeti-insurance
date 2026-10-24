@@ -164,8 +164,10 @@ function reviewsSection() {
   const real = REVIEWS.filter(r => !isPH(r[0]) && !isPH(r[1]));
   if (!real.length) return `<section class="testi" aria-labelledby="reviews-h"><div class="wrap"><div class="rv-head rv">
     <div><p class="kicker">Client reviews</p><h2 id="reviews-h">Rated ${site.googleRating} by our clients on Google</h2><p class="lead" style="color:#c9d3df">See what Texas business owners, homeowners and drivers say about working with our team.</p></div>
-    <a class="g-card" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><small>Read our reviews on Google →</small></span></a>
-  </div></div></section>`;
+    <a class="g-card" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><small><span class="g-count"></span>Read our reviews on Google →</small></span></a>
+  </div>
+  <div class="live-reviews" data-src="/.netlify/functions/google-reviews" hidden><ul class="lr-list" aria-label="Recent Google reviews"></ul><p class="lr-foot">Reviews shown are from Google. <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener">Read all reviews on Google →</a></p></div>
+  </div></section>`;
   return `<section class="testi" aria-labelledby="reviews-h"><div class="wrap">
   <div class="rv-head rv"><div><p class="kicker">Client reviews</p><h2 id="reviews-h">Rated ${site.googleRating} by our clients on Google</h2></div>
    <a class="g-card" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><small>Read all reviews on Google →</small></span></a></div>
@@ -179,21 +181,31 @@ function reviewsSection() {
 const credStrip = () => `<div class="cred"><div class="wrap">
   <div class="c rv"><b>${new Date().getFullYear() - site.founded} years</b><span>Serving Texas since ${site.founded}</span></div>
   <div class="c rv"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><b>${site.googleRating} ★</b><span>Google rating · read reviews</span></a></div>
-  <div class="c rv"><a href="${site.licenseVerifyUrl}" target="_blank" rel="noopener"><b>Licensed</b><span>Texas Dept. of Insurance · verify</span></a></div>
+  <div class="c rv"><b>Licensed</b><span>Texas Department of Insurance</span></div>
   <div class="c rv"><b>Independent</b><span>Multiple carriers compared</span></div>
 </div></div>`;
 
 const carrierStrip = () => site.carriers.filter(c => !isPH(c.name)).length < 3 ? "" : `<div class="carriers"><div class="wrap"><p>We compare coverage from leading insurance companies, including</p>
   <ul class="logos">${site.carriers.filter(c => !isPH(c.name)).map(c => c.logo ? `<li><img src="${c.logo}" alt="${c.name}" width="140" height="36" loading="lazy"></li>` : `<li>${c.name}</li>`).join("")}</ul></div></div>`;
 
-const teamGrid = (h = "h3") => `<ul class="team-grid">${site.team.map(t => `<li class="person rv"><div class="ph"><span aria-hidden="true">${t.initials}</span>${hasAsset(t.photo) ? `<img src="${t.photo}" alt="${t.name}, ${t.role}" loading="lazy" width="400" height="400">` : ""}</div><${h}>${t.name}</${h}><p class="role">${t.role}</p>${isPH(t.license) ? "" : `<p class="lic">TX License #${t.license}</p>`}<a href="tel:${t.tel}">${t.phone}</a><a href="mailto:${t.email}">${t.email}</a></li>`).join("")}</ul>`;
+const IC_PHONE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';
+const IC_MAIL = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+const IC_OUT = '<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg>';
+const teamGrid = (h = "h3") => `<ul class="team-grid">${site.team.map(t => `<li class="person rv"><div class="ph"><span aria-hidden="true">${t.initials}</span>${hasAsset(t.photo) ? `<img src="${t.photo}" alt="${t.name}, ${t.role}" loading="lazy" width="400" height="400">` : ""}</div>
+  <div class="pinfo"><${h} class="pname">${t.name}</${h}><p class="role">${t.role}</p>${isPH(t.license) ? "" : `<p class="lic">TX License #${t.license}</p>`}
+  <ul class="pcontact"><li><a href="tel:${t.tel}">${IC_PHONE}${t.phone}</a></li><li><a href="mailto:${t.email}">${IC_MAIL}${t.email}</a></li>${t.linkedin ? `<li><a href="${t.linkedin}" target="_blank" rel="noopener" aria-label="${t.name} on LinkedIn (opens in a new tab)">${IC_OUT}LinkedIn profile</a></li>` : ""}</ul></div></li>`).join("")}</ul>`;
 
 const trustBar = () => `<div class="trustbar"><div class="wrap">
-  <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a1f2b" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3.5v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Licensed by the Texas Department of Insurance · <a href="${site.licenseVerifyUrl}" target="_blank" rel="noopener">Verify</a></span>
+  <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a1f2b" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3.5v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Licensed by the Texas Department of Insurance</span>
   <span><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google · <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener">Read reviews</a></span>
   <span>Independent agency since ${site.founded}</span>
   <span>Local office: ${site.address.city}, TX</span>
 </div>${site.affiliations.length ? `<ul class="affil wrap">${site.affiliations.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}</div>`;
+
+const SOCIAL = [["facebook", "Facebook"], ["instagram", "Instagram"], ["linkedin", "LinkedIn"], ["youtube", "YouTube"]];
+const socialLinks = () => `<ul class="social" aria-label="Follow Yeti Insurance">${SOCIAL.filter(([k]) => site.social[k]).map(([k, label]) => {
+  const ic = ["svg", "png"].map(e => `/assets/img/social/${k}.${e}`).find(hasAsset);
+  return `<li><a href="${site.social[k]}" target="_blank" rel="noopener" aria-label="${label} (opens in a new tab)">${ic ? `<img src="${ic}" alt="" width="18" height="18">` : ""}<span>${label}</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></li>`; }).join("")}</ul>`;
 
 const ctaBand = () => `<div class="cta"><div class="wrap"><div><h2>Let's review your coverage.</h2><p>Free, no-obligation quotes for businesses, homes and vehicles across Texas.</p></div><button type="button" class="btn btn-white" data-open="quote-modal">Start a Quote</button></div></div>`;
 
@@ -201,4 +213,4 @@ function pointsList(items, ic = icon.check, h = "h3") {
   return `<ul class="points">${items.map(([t, d]) => `<li class="rv">${ic}<div><${h}>${t}</${h}><p>${d}</p></div></li>`).join("")}</ul>`;
 }
 
-module.exports = { hasAsset, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
+module.exports = { socialLinks, hasAsset, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
