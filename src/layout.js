@@ -112,7 +112,7 @@ ${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follo
 ${ld}
 <!-- Analytics: paste Google Analytics 4 / Tag Manager snippet here -->
 </head>
-<body data-hours='${JSON.stringify(site.hours.week)}'${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
+<body data-quote-thanks="/thank-you/quote/" data-hours='${JSON.stringify(site.hours.week)}'${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="util"><div class="wrap">

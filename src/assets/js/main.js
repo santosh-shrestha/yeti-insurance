@@ -151,12 +151,26 @@
           try { navigator.sendBeacon ? navigator.sendBeacon(sh, p) : fetch(sh, { method: "POST", mode: "no-cors", body: p }); } catch (e) {}
         }
         if (window.dataLayer) window.dataLayer.push({ event: "form_submit", form: form.getAttribute("name") });
+        // Quote requests go to a dedicated confirmation page (used as the Google Ads "quote request" conversion page)
+        if (form.getAttribute("name") === "quote" && /^https?:$/.test(location.protocol) && document.body.dataset.quoteThanks) {
+          const q = new URLSearchParams({ ref: ($(".ref b", done || form) || {}).textContent || ref(form.dataset.ref || "YQ") });
+          if (first) q.set("n", first);
+          setTimeout(() => { location.href = document.body.dataset.quoteThanks + "?" + q.toString(); }, 150);
+        }
       } catch (err) {
         errBox && errBox.classList.add("show");
       } finally { form.classList.remove("sending"); }
     });
   }
   $$("form.js-form").forEach(initForm);
+
+  /* ---------- Quote confirmation page: show first name + reference from the URL ---------- */
+  const tq = $(".tq-ref");
+  if (tq) {
+    const qs = new URLSearchParams(location.search), r = (qs.get("ref") || "").replace(/[^A-Z0-9-]/gi, "").slice(0, 16), n = (qs.get("n") || "").replace(/[^\p{L} '-]/gu, "").slice(0, 30);
+    if (r) { $("b", tq).textContent = r; tq.hidden = false; }
+    if (n) $$(".tq-name").forEach(e => e.textContent = ", " + n);
+  }
 
   /* ---------- Modals (quote + claim) ---------- */
   let lastFocus = null, hideTimer = null;

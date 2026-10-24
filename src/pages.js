@@ -388,6 +388,18 @@ add({
 <section><div class="wrap"><a class="btn btn-maroon" href="/">Back to home</a></div></section>`,
 });
 
+add({
+  path: "/thank-you/quote/", noindex: true, noCta: true,
+  title: "Quote Request Received | Yeti Insurance Agency", description: "Your quote request was received. A licensed Yeti Insurance agent will contact you within one business day.",
+  body: `${C.smallHero({ kicker: "Quote request received", h1: `Thank you<span class="tq-name"></span>. We're on it.`, sub: `A licensed agent will review your request and contact you within one business day, usually sooner. Need help right away? Call ${site.phone}.`, ctas: false })}
+<section><div class="wrap" style="max-width:760px">
+  <p class="tq-ref lead" hidden>Your reference number: <b></b></p>
+  <h2 style="margin-top:8px">What happens next</h2>
+  <ol class="steps-list" style="margin-top:20px"><li>Your agent reviews your details and may call with a few quick questions.</li><li>We compare quotes from multiple carriers for the best fit.</li><li>We walk you through the options. You choose, with no obligation.</li></ol>
+  <p style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-maroon" href="tel:${site.phoneE164}">Call ${site.phone}</a><a class="btn btn-line" href="/">Back to home</a></p>
+</div></section>`,
+});
+
 /* ================= LEGAL & SIMPLE PAGES ================= */
 const simple = (path, title, h1, html, desc) => add({ path, priority: 0.3, title: `${title} | Yeti Insurance Agency`, description: desc || `${title} for ${site.legalName}, an independent insurance agency in Irving serving all of Texas.`, breadcrumbs: [[path, title]],
   body: `${C.smallHero({ kicker: site.name, h1, ctas: false })}<section><div class="wrap"><div class="prose">${html}</div></div></section>` });
