@@ -111,6 +111,9 @@ ${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follo
 <script>document.documentElement.className='js'</script>
 ${ld}
 <!-- Analytics: paste Google Analytics 4 / Tag Manager snippet here -->
+${site.googleTag ? `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${site.googleTag}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.googleTag}');</script>` : ""}
 </head>
 <body data-quote-thanks="/thank-you/quote/" data-hours='${JSON.stringify(site.hours.week)}'${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>

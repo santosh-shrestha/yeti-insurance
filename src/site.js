@@ -51,6 +51,9 @@ module.exports = {
    */
   formEndpoint: "",
 
+  // Google tag (Google Ads + Analytics). Loaded on every page; the Ads "quote request" conversion fires on /thank-you/quote/.
+  googleTag: "G-NTBRF8QEE8",
+
   /**
    * GOOGLE SHEET — every form submission is also copied to the "Yeti Website Leads" sheet.
    * Paste the Apps Script Web App URL (ends in /exec) and the same secret token used in the script.
