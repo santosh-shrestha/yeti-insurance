@@ -11,7 +11,7 @@ const hubs = {
     coverage: "commercial",
     label: "Commercial Insurance",
     short: "Commercial",
-    title: "Commercial Insurance in Texas | Business Insurance | Yeti Insurance",
+    title: "Commercial & Business Insurance in Texas | Yeti Insurance",
     description: "Commercial insurance for Texas businesses: general liability, property, workers' comp, commercial auto and more. Independent agency since 2016.",
     h1: "Commercial Insurance for Texas Businesses",
     intro: "Protect your business, employees and assets with coverage built around your industry. We compare leading carriers and build a package that fits how your business actually runs, anywhere in Texas.",

@@ -65,7 +65,7 @@ const homeFaq = [
 
 add({
   path: "/", priority: 1.0,
-  title: "Commercial, Home & Auto Insurance in Texas | Yeti Insurance Agency",
+  title: "Commercial, Home & Auto Insurance in Texas | Yeti Insurance",
   description: "Independent Texas insurance agency since 2016. Commercial, home and auto insurance from leading carriers. Rated 4.9 on Google. Serving all of Texas.",
   schema: [C.faqSchema(homeFaq), { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url + "/" }],
   body: `
@@ -208,7 +208,7 @@ for (const s of subs) {
 /* ================= ABOUT ================= */
 add({
   path: "/about/", priority: 0.7,
-  title: "About Yeti Insurance | Independent Texas Insurance Agency Since 2016",
+  title: "About Us | Independent Texas Insurance Agency | Yeti",
   description: "Meet Yeti Insurance Agency, an independent insurance agency in Irving serving all of Texas since 2016. Our story, our team and how we work.",
   breadcrumbs: [["/about/", "About"]],
   body: `${C.smallHero({ kicker: "About us", h1: `An independent Texas agency, built on relationships since ${site.founded}.`, sub: "We started in Irving with a simple idea: give business owners and families honest advice and real choices. Today we serve clients across Texas." })}
@@ -277,7 +277,7 @@ ${C.faqSection([["Should I call my carrier or my agent first?", "For emergencies
 const ACTIONS = [["Billing & payments", "Your agent handles payments. Send a billing question and we'll call you.", "Billing question"], ["Certificate of insurance", "Request a COI or add an additional insured.", "Certificate of insurance"], ["ID cards", "Get auto ID cards sent to you.", "Auto ID cards"], ["Policy change", "Add a driver, vehicle or location, or update coverage.", "Policy change"], ["Report a claim", "Notify us and get carrier claim numbers.", "claim"], ["Coverage review", "Schedule your annual review with your agent.", "Coverage review"]];
 add({
   path: "/client-service/", priority: 0.6,
-  title: "Client Service Center | COIs, ID Cards, Policy Changes | Yeti Insurance",
+  title: "Client Service | COIs, ID Cards & Changes | Yeti Insurance",
   description: "Existing Yeti Insurance clients: request a certificate of insurance or ID cards, change your policy, ask a billing question or report a claim.",
   breadcrumbs: [["/client-service/", "Client Service"]],
   body: `${C.smallHero({ kicker: "Client service", h1: "Client Service Center", sub: "Everything existing clients need in one place. We handle most requests promptly, often the same business day.", ctas: false })}
@@ -293,7 +293,7 @@ add({
 /* ================= PARTNERS ================= */
 add({
   path: "/partners/", priority: 0.5,
-  title: "Lender & Realtor Partners | Evidence of Insurance | Yeti Insurance",
+  title: "Lender & Realtor Partners | Yeti Insurance Agency",
   description: "Mortgage lenders, realtors and title companies: request evidence of insurance, binders, mortgagee changes or a fast home insurance quote for your Texas clients.",
   breadcrumbs: [["/partners/", "Partners"]],
   body: `${C.smallHero({ kicker: "Partners", h1: "For lenders, realtors and title companies", sub: "Fast quotes and documents to keep your Texas closings on schedule.", ctas: false })}
@@ -371,7 +371,7 @@ for (const p of posts) {
 /* ================= QUOTE & THANK YOU ================= */
 add({
   path: "/quote/", priority: 0.9,
-  title: "Get a Free Insurance Quote | Commercial, Home & Auto | Yeti Insurance",
+  title: "Free Insurance Quote: Business, Home & Auto | Yeti Insurance",
   description: "Request a free, no-obligation commercial, home or auto insurance quote from Yeti Insurance. We compare multiple carriers for Texans.",
   breadcrumbs: [["/quote/", "Get a Quote"]],
   body: `${C.smallHero({ kicker: "Free quote", h1: "Get a free insurance quote", sub: "Tell us what you'd like to insure. A licensed agent will compare carriers and follow up within one business day.", ctas: false })}
