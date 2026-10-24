@@ -39,7 +39,6 @@ function quoteForm({ id = "q", coverage = "", heading = "Request a quote", tag =
   return `<div class="card-form" ${id === "qf" ? 'id="qf"' : ""}>
   <form class="js-form" name="quote" method="POST"${formAction}${netlify} data-ref="YQ" novalidate>
     <input type="hidden" name="form-name" value="quote">
-    <input type="hidden" name="page" value="">
     ${honeypot}
     <div class="progress" aria-hidden="true"><i></i></div>
     <div class="step on">
@@ -64,6 +63,7 @@ function quoteForm({ id = "q", coverage = "", heading = "Request a quote", tag =
       <p class="trust-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure form · Free, no-obligation quote · We never sell your information</p>
       <p class="legal">By submitting, you agree to be contacted about your request. See our <a href="/privacy/">Privacy Policy</a>.</p>
     </div>
+    <input type="hidden" name="page" value="">
   </form>
   <div class="done" hidden tabindex="-1"><div class="ck" aria-hidden="true">✓</div><p style="font-family:var(--serif);font-size:24px;color:var(--blue)">Thank you<span class="fname"></span>.</p><p class="note" style="margin-top:8px">Your request was received. An agent will contact you within one business day. For immediate help call ${tel}.</p><p class="ref">Reference <b></b></p></div>
 </div>`;
@@ -73,7 +73,6 @@ function claimForm() {
   return `<div class="card-form">
   <form class="js-form" name="claim-notice" method="POST"${formAction}${netlify} data-ref="YC" novalidate>
     <input type="hidden" name="form-name" value="claim-notice">
-    <input type="hidden" name="page" value="">
     ${honeypot}
     <h2 id="claim-title" style="font-size:24px">Notify us of a claim</h2>
     <p class="note">For emergencies or after hours, call your carrier's 24/7 claims line first. We'll follow up during business hours.</p>
@@ -88,6 +87,7 @@ function claimForm() {
     <div class="f"><label for="c-desc">What happened?</label><textarea id="c-desc" name="description" rows="3" data-rule="required"></textarea><span class="err-msg">Please describe what happened.</span></div>
     <div class="form-error" role="alert">Sorry, something went wrong. Please call us at ${site.phone}.</div>
     <button class="btn btn-maroon btn-block" type="submit">Submit</button>
+    <input type="hidden" name="page" value="">
   </form>
   <div class="done" hidden tabindex="-1"><div class="ck" aria-hidden="true">✓</div><p style="font-family:var(--serif);font-size:24px;color:var(--blue)">Claim notice received.</p><p class="note" style="margin-top:8px">Your agent will contact you during business hours. For emergencies, call your carrier's 24/7 claims line.</p><p class="ref">Reference <b></b></p></div>
 </div>`;
@@ -97,7 +97,6 @@ function contactForm() {
   return `<div class="card-form">
   <form class="js-form" name="contact" method="POST"${formAction}${netlify} data-ref="YM" novalidate>
     <input type="hidden" name="form-name" value="contact">
-    <input type="hidden" name="page" value="">
     ${honeypot}
     <h2 style="font-size:24px">Send us a message</h2><p class="note">We reply within one business day. Looking for a quote? <button type="button" class="link" style="background:none;border:0;border-bottom:1px solid;cursor:pointer;padding:0;font-size:inherit" data-open="quote-modal">Start a quote</button>.</p>
     <div class="f"><label for="m-name">Full name</label><input id="m-name" name="name" autocomplete="name" data-rule="name"><span class="err-msg">Please enter your name.</span></div>
@@ -109,6 +108,7 @@ function contactForm() {
     <div class="form-error" role="alert">Sorry, something went wrong. Please call us at ${site.phone}.</div>
     <button class="btn btn-maroon btn-block" type="submit">Send Message</button>
     <p class="legal">See our <a href="/privacy/">Privacy Policy</a>.</p>
+    <input type="hidden" name="page" value="">
   </form>
   <div class="done" hidden tabindex="-1"><div class="ck" aria-hidden="true">✓</div><p style="font-family:var(--serif);font-size:24px;color:var(--blue)">Message sent.</p><p class="note" style="margin-top:8px">Thanks for reaching out. We'll reply within one business day.</p><p class="ref">Reference <b></b></p></div>
 </div>`;
@@ -119,7 +119,6 @@ function serviceForm() {
   return `<div class="card-form">
   <form class="js-form" name="service-request" method="POST"${formAction}${netlify} data-ref="YS" novalidate>
     <input type="hidden" name="form-name" value="service-request">
-    <input type="hidden" name="page" value="">
     ${honeypot}
     <div class="f"><label for="svc-type">Request type</label><select id="svc-type" name="request_type" data-rule="required"><option value="">Select…</option>${types.map(t => `<option>${t}</option>`).join("")}</select><span class="err-msg">Choose a request type.</span></div>
     <div class="two">
@@ -133,6 +132,7 @@ function serviceForm() {
     <div class="f"><label for="svc-details">Details</label><textarea id="svc-details" name="details" rows="3" placeholder="e.g. COI for ABC Builders, job at 123 Main St, Dallas"></textarea></div>
     <div class="form-error" role="alert">Sorry, something went wrong. Please call us at ${site.phone}.</div>
     <button class="btn btn-maroon btn-block" type="submit">Submit Request</button>
+    <input type="hidden" name="page" value="">
   </form>
   <div class="done" hidden tabindex="-1"><div class="ck" aria-hidden="true">✓</div><p style="font-family:var(--serif);font-size:24px;color:var(--blue)">Request received.</p><p class="note" style="margin-top:8px">We'll confirm by phone or email, usually the same business day.</p><p class="ref">Reference <b></b></p></div>
 </div>`;
