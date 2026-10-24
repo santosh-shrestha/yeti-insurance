@@ -133,7 +133,7 @@ function serviceForm() {
 
 /* ---------- Page sections ---------- */
 function smallHero({ kicker, h1, sub = "", ctas = true }) {
-  return `<section class="hero hero-sm" style="padding:0"><div class="hero-bg"><img src="/assets/img/hero.jpg" alt="" width="960" height="600"></div><div class="wrap"><div>
+  return `<section class="hero hero-sm" style="padding:0"><div class="hero-bg"></div><div class="wrap"><div>
     {{CRUMBS}}
     <p class="kicker">${kicker}</p><h1>${h1}</h1>${sub ? `<p class="sub">${sub}</p>` : ""}
     ${ctas ? `<div class="ctas"><button type="button" class="btn btn-maroon" data-open="quote-modal">Start a Quote</button><a class="btn btn-ghost" href="tel:${site.phoneE164}">Call ${site.phone}</a></div>${googleBadge()}` : ""}
@@ -188,22 +188,10 @@ const trustBar = () => `<div class="trustbar"><div class="wrap">
   <span>Local office: ${site.address.city}, TX</span>
 </div>${site.affiliations.length ? `<ul class="affil wrap">${site.affiliations.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}</div>`;
 
-// Curated: clear, professional, brand-forward photos only (no close-ups of children).
-const COMMUNITY = [
-  ["/assets/img/community/community-2.jpg", "Yeti Insurance tent and team at an outdoor community event"],
-  ["/assets/img/community/community-3.jpg", "Community bike ride supported by Yeti Insurance"],
-  ["/assets/img/community/community-6.jpg", "The Yeti mascot greeting families at a community event"],
-];
-const communityGallery = (n = 6, intro = true) => `<section class="community"><div class="wrap">
-  <div class="svc-head rv"><div><p class="kicker">In the community</p><h2>Proud to be part of North Texas</h2></div>
-  ${intro ? `<p class="lead">From neighborhood festivals to youth programs and charity rides, our team shows up for the communities we insure.</p>` : ""}</div>
-  <ul class="gallery">${COMMUNITY.slice(0, n).map(([src, alt]) => `<li class="rv"><img src="${src}" alt="${alt}" loading="lazy" width="800" height="600"></li>`).join("")}</ul>
-</div></section>`;
-
 const ctaBand = () => `<div class="cta"><div class="wrap"><div><h2>Let's review your coverage.</h2><p>Free, no-obligation quotes for businesses, homes and vehicles across Texas.</p></div><button type="button" class="btn btn-white" data-open="quote-modal">Start a Quote</button></div></div>`;
 
 function pointsList(items, ic = icon.check, h = "h3") {
   return `<ul class="points">${items.map(([t, d]) => `<li class="rv">${ic}<div><${h}>${t}</${h}><p>${d}</p></div></li>`).join("")}</ul>`;
 }
 
-module.exports = { communityGallery, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
+module.exports = { REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };

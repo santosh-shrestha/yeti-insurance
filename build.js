@@ -120,7 +120,7 @@ if (!realCarriers.some(c => c.payUrl)) todo.push("Carrier payment links (site.js
 if (site.team.some(t => isPH(t.license))) todo.push("Agent license numbers (site.js → team[].license)");
 if (site.story.every(isPH)) todo.push("Founder story (site.js → story)");
 if (require("./src/components").REVIEWS_REAL === 0) todo.push("Real Google reviews (components.js → REVIEWS) — slider hidden until added");
-["logo-navy.png", "logo-white.png", "og-image.jpg", "hero.jpg"].forEach(f => { if (!fs.existsSync(path.join(ASSETS, "img", f))) todo.push(`Image: src/assets/img/${f}`); });
+["logo-navy.png", "logo-white.png", "og-image.jpg", "hero-poster.jpg"].forEach(f => { if (!fs.existsSync(path.join(ASSETS, "img", f))) todo.push(`Image: src/assets/img/${f}`); });
 if (todo.length) console.log("\n⚑ Launch checklist (" + todo.length + " items still placeholder — hidden on the site):\n  - " + todo.join("\n  - ") + "\n");
 
 console.log(`✓ Built ${built.length} pages to /dist  (${broken} broken internal links)`);

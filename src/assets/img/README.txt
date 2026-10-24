@@ -6,7 +6,7 @@ Anything missing falls back gracefully (text logo, initials, grey blocks).
 Logos
   logo-navy.png         Header logo (transparent PNG, ~320x104 px)
   logo-white.png        Footer logo (white version)
-  favicon-64.png        Done (made from the logo mark)
+  favicon.svg           Already included (simple mark). Replace with brand icon if desired.
   apple-touch-icon.png  180x180 px
 
 Photos (JPG/WebP, compressed, under 200 KB each)
