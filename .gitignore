@@ -1,0 +1,8 @@
+dist/
+preview/
+submissions/
+site-preview.html
+node_modules/
+.DS_Store
+qa-run.html
+LAUNCH-AUDIT.local.md
