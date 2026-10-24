@@ -68,6 +68,7 @@
     } catch (e) {}
     $$(".open-ind").forEach(el => { el.textContent = open ? "Open now · Call a licensed agent" : "Call a licensed agent"; el.classList.toggle("is-open", open); });
     $$(".open-dot").forEach(el => el.classList.toggle("is-open", open));
+    $$(".open-status").forEach(el => { el.textContent = open ? "Open now" : "Closed now · we'll call you back next business day"; el.classList.toggle("is-open", open); });
   }
   updateOpen(); setInterval(updateOpen, 60000);
 

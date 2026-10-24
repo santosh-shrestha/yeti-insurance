@@ -376,7 +376,7 @@ a:hover .arrow{transform:translateX(4px)}
 .site-footer .brand .mark{background:var(--maroon)}
 .site-footer address{font-style:normal;margin-top:14px}
 .fbottom{border-top:1px solid rgba(255,255,255,.1);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px}
-.disclaimer{font-size:12px;color:#6f849a;margin-top:18px;line-height:1.6;max-width:980px}
+.disclaimer{font-size:12px;color:#8597ab;margin-top:18px;line-height:1.6;max-width:980px}
 
 /* Modal */
 .modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px}
@@ -650,3 +650,16 @@ section{padding:104px 0}
 .mbar [aria-current="page"],.mbar .q.on{background:var(--maroon)}
 .mbar a,.mbar button{transition:background .15s}
 .mbar a:active,.mbar button:active{background:var(--maroon)}
+.open-status{font-size:14px;color:var(--muted)}.open-status.is-open{color:#1f7a3d;font-weight:600}
+/* Action grids: no grey filler when the last row isn't full */
+.actions{gap:0;background:#fff}
+.action{box-shadow:1px 0 0 var(--line),0 1px 0 var(--line)}
+
+/* Resource cards: branded tiles instead of empty photo placeholders */
+.post .post-img{background:linear-gradient(135deg,#163a63 0%,#0f2a4a 100%);display:grid;place-items:center;color:rgba(255,255,255,.85);overflow:hidden}
+.post .post-img:after{content:"";position:absolute;left:0;right:0;bottom:0;height:38%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 60 L60 20 L110 45 L170 5 L230 40 L290 15 L350 42 L400 25 L400 60Z' fill='%23ffffff' fill-opacity='.06'/%3E%3C/svg%3E") bottom/100% 100% no-repeat}
+.post .post-img svg{width:64px;height:64px;position:relative;z-index:1}
+.post-home .post-img,.post .post-img.post-home{background:linear-gradient(135deg,#1d4a78,#0f2a4a)}
+.post .post-img.post-commercial{background:linear-gradient(135deg,#5f1621,#7a1f2b)}
+@media(max-width:1000px){.m-first{order:-1}}
+.prose a.btn{text-decoration:none;border-bottom:0}

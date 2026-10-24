@@ -123,11 +123,11 @@ function serviceForm() {
     ${honeypot}
     <div class="f"><label for="svc-type">Request type</label><select id="svc-type" name="request_type" data-rule="required"><option value="">Select…</option>${types.map(t => `<option>${t}</option>`).join("")}</select><span class="err-msg">Choose a request type.</span></div>
     <div class="two">
-      <div class="f"><label for="svc-name">Name / business</label><input id="svc-name" name="name" data-rule="name"><span class="err-msg">Please enter your name.</span></div>
-      <div class="f"><label for="svc-phone">Phone</label><input id="svc-phone" name="phone" type="tel" data-rule="phone"><span class="err-msg">Enter a 10-digit phone number.</span></div>
+      <div class="f"><label for="svc-name">Name / business</label><input id="svc-name" name="name" autocomplete="name" data-rule="name"><span class="err-msg">Please enter your name.</span></div>
+      <div class="f"><label for="svc-phone">Phone</label><input id="svc-phone" name="phone" type="tel" autocomplete="tel" data-rule="phone"><span class="err-msg">Enter a 10-digit phone number.</span></div>
     </div>
     <div class="two">
-      <div class="f"><label for="svc-email">Email</label><input id="svc-email" name="email" type="email" data-rule="email"><span class="err-msg">Enter a valid email.</span></div>
+      <div class="f"><label for="svc-email">Email</label><input id="svc-email" name="email" type="email" autocomplete="email" data-rule="email"><span class="err-msg">Enter a valid email.</span></div>
       <div class="f"><label for="svc-policy">Policy number (if known)</label><input id="svc-policy" name="policy_number"></div>
     </div>
     <div class="f"><label for="svc-details">Details</label><textarea id="svc-details" name="details" rows="3" placeholder="e.g. COI for ABC Builders, job at 123 Main St, Dallas"></textarea></div>

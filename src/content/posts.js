@@ -32,7 +32,7 @@ module.exports = [
   <li>Photograph or video your roof, siding, windows and belongings so you have a "before" record.</li>
   <li>Keep your policy number and your carrier's claims phone number in your phone.</li>
   <li>Ask about discounts for impact-resistant (Class 4) shingles if you're replacing your roof.</li>
-  <li>Move vehicles into a garage or under cover when hail is forecast. Vehicle hail damage is covered under the <em>comprehensive</em> part of your <a href="/auto-insurance-texas/">auto policy</a>, not your home policy.</li>
+  <li>Move vehicles into a garage or under cover when hail is forecast. Vehicle hail damage is covered by <em>comprehensive</em> coverage on your <a href="/auto-insurance-texas/">auto policy</a>, if you carry it, not by your home policy.</li>
 </ul>
 
 <h2>5. After the storm</h2>
@@ -65,15 +65,15 @@ module.exports = [
 <h2>Who needs an SR-22 in Texas?</h2>
 <p>Common reasons include:</p>
 <ul>
-  <li>A DWI or other serious driving conviction</li>
-  <li>Driving without insurance, or an at-fault accident while uninsured</li>
-  <li>A suspended or revoked license that you're trying to reinstate</li>
-  <li>Multiple traffic violations in a short period</li>
+  <li>A DWI or drug-related driving conviction</li>
+  <li>A conviction for Driving While License Invalid</li>
+  <li>A second or later conviction for driving without insurance</li>
+  <li>A license suspension after a crash while uninsured, or an unpaid judgment from a crash</li>
 </ul>
 <p>The court or DPS will tell you if you need one. If you don't own a car but still need to reinstate your license, you may need a <strong>non-owner SR-22</strong> policy.</p>
 
 <h2>How long do you need it?</h2>
-<p>In Texas, an SR-22 is generally required for two years, but the exact period depends on your situation. Confirm the requirement with DPS or the court.</p>
+<p>In Texas, you must keep an SR-22 on file for two years from the date of your most recent qualifying conviction (or the date of a judgment against you). A new conviction can extend that period. Confirm the requirement with DPS or the court.</p>
 <div class="callout"><strong>Important:</strong> If your policy lapses or is cancelled while an SR-22 is required, your insurer must notify the state, and your license can be suspended again. Set up automatic payments so you never miss one.</div>
 
 <h2>How to keep your premium down</h2>

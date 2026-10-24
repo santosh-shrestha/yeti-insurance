@@ -14,7 +14,7 @@ const subUrl = s => hubs[s.parent].path + s.slug + "/";
 const INDUSTRIES = [
   ["Restaurants", "Restaurants & Food Service", "Liability, property, equipment breakdown, food spoilage and liquor liability for Texas restaurants.", ["General Liability", "Liquor Liability", "Commercial Property", "Workers' Comp"]],
   ["Retail", "Retail & Convenience Stores", "Storefronts, convenience stores and gas stations, with inventory and crime protection.", ["Business Owner's Policy", "Commercial Property", "Crime", "Commercial Auto"]],
-  ["Contractors", "Contractors & Trades", "Coverage that meets job-site and contract requirements, with same-day certificates.", ["General Liability", "Tools & Equipment", "Builder's Risk", "Workers' Comp"]],
+  ["Contractors", "Contractors & Trades", "Coverage that meets job-site and contract requirements, with fast certificates, often the same business day.", ["General Liability", "Tools & Equipment", "Builder's Risk", "Workers' Comp"]],
   ["Hospitality", "Hotels & Motels", "Protects your property and guests and helps keep you open after a loss.", ["Commercial Property", "General Liability", "Business Income", "Umbrella"]],
   ["Transportation", "Trucking & Transportation", "Commercial auto and fleet coverage for Texas roads.", ["Commercial Auto", "Cargo", "Physical Damage", "Umbrella"]],
   ["Uber Black", "Uber Black & Livery", "Commercial auto (livery) coverage for Uber Black, Black SUV, limo and black car drivers and fleets.", ["Commercial Auto (Livery)", "Physical Damage", "Uninsured Motorist", "Platform Certificates"]],
@@ -54,7 +54,7 @@ const texasMap = `<div class="tx-map rv">
   </svg><div class="tx-tip" aria-hidden="true"></div>
   <p class="tx-legend"><span class="lg hq"></span>Our Irving office <span class="lg"></span>Cities we serve</p></div>`;
 
-const postCards = list => `<div class="blog-grid">${list.map(p => `<article class="post rv"><div class="post-img"><span>${p.category}</span></div><div class="post-body"><small>${p.category} · ${p.readTime}</small><h3><a href="/resources/${p.slug}/">${p.title}</a></h3><p>${p.description}</p><span class="link">Read article →</span></div></article>`).join("")}</div>`;
+const postCards = list => `<div class="blog-grid">${list.map(p => `<article class="post rv"><div class="post-img post-${p.category.toLowerCase()}"><span>${p.category}</span>${(C.icon[p.category.toLowerCase()] || "").replace(/stroke="#0f2a4a"/, 'stroke="currentColor"')}</div><div class="post-body"><small>${p.category} · ${p.readTime}</small><h3><a href="/resources/${p.slug}/">${p.title}</a></h3><p>${p.description}</p><span class="link">Read article →</span></div></article>`).join("")}</div>`;
 
 const homeFaq = [
   ["Does Yeti Insurance serve all of Texas?", "Yes. Our office is in Irving, and we write commercial, home and auto policies for clients throughout Texas. Most service is handled by phone and email, and you're always welcome at our Las Colinas office."],
@@ -174,8 +174,8 @@ function coverageBody({ h1, intro, crumbsLabel, covers, sections = [], body = ""
     <div class="rv" style="margin-top:40px"><p class="kicker">Who we insure</p><ul class="chips">${who.map(w => `<li>${w}</li>`).join("")}</ul></div>
     ${related.length ? `<div class="rv related"><p class="kicker">Related coverage</p><div class="chips">${related.map(([u, l]) => `<a class="chip-link" href="${u}">${l}</a>`).join("")}</div></div>` : ""}
   </div>
-  <div class="sticky rv">${C.quoteForm({ id: "pq", coverage, heading: `Get a ${crumbsLabel.toLowerCase()} quote` })}
-    <p class="muted" style="margin-top:16px;text-align:center">Prefer to talk? Call ${C.tel} · <span class="open-ind">${site.hours.label}</span></p></div>
+  <div class="sticky rv">${C.quoteForm({ id: "pq", coverage, heading: "Request a quote" })}
+    <p class="muted" style="margin-top:16px;text-align:center">Prefer to talk? Call ${C.tel}<br><span class="open-status"></span></p></div>
 </div></section>
 ${children.length ? `<section style="background:var(--bg)"><div class="wrap"><p class="kicker rv">Explore</p><h2 class="rv">${crumbsLabel} insurance by type</h2><div class="actions" style="margin-top:32px">${children.map(([u, t, d]) => `<a class="action rv" href="${u}"><span class="action-t">${t}</span><p>${d}</p><span class="arrow" aria-hidden="true">→</span></a>`).join("")}</div></div></section>` : ""}
 ${C.reviewsSection()}
@@ -318,7 +318,7 @@ add({
     <li><small>Address</small><p>${site.address.street}<br>${site.address.city}, ${site.address.state} ${site.address.zip}</p></li>
     <li><small>Phone</small><p>${C.tel}</p></li>
     <li><small>Email</small><p><a href="mailto:${site.email}">${site.email}</a></p></li>
-    <li><small>Hours</small><p>${site.hours.label} · <span class="open-ind"></span></p></li>
+    <li><small>Hours</small><p>${site.hours.label}<br><span class="open-status"></span></p></li>
     <li><small>Service area</small><p>All of Texas</p></li>
    </ul></div>
   <div class="rv">${C.contactForm()}</div>
@@ -370,7 +370,7 @@ for (const p of posts) {
 
 /* ================= QUOTE & THANK YOU ================= */
 add({
-  path: "/quote/", priority: 0.9,
+  path: "/quote/", priority: 0.9, noCta: true,
   title: "Free Insurance Quote: Business, Home & Auto | Yeti Insurance",
   description: "Request a free, no-obligation commercial, home or auto insurance quote from Yeti Insurance. We compare multiple carriers for Texans.",
   breadcrumbs: [["/quote/", "Get a Quote"]],
@@ -378,8 +378,10 @@ add({
 <section><div class="wrap split top">
   <div class="rv"><h2>What happens next</h2><ol class="steps-list"><li>We review your request and may call with a few quick questions.</li><li>Your agent compares quotes from multiple carriers.</li><li>We walk you through the options. You choose, with no obligation.</li></ol>
   <p class="lead" style="margin-top:24px">Prefer to talk? Call ${C.tel}.</p></div>
-  <div class="rv">${C.quoteForm({ id: "qp", heading: "Request a quote" })}</div>
-</div></section>`,
+  <div class="rv m-first">${C.quoteForm({ id: "qp", heading: "Request a quote" })}</div>
+</div></section>
+${C.credStrip()}
+${C.carrierStrip()}`,
 });
 add({
   path: "/thank-you/", noindex: true, noCta: true,
@@ -408,8 +410,8 @@ simple("/privacy/", "Privacy Policy", "Privacy Policy", `<p>${site.legalName} ("
 simple("/terms/", "Terms of Use", "Terms of Use", `<p>Information on this website is provided for general informational purposes and does not create an insurance contract, alter any policy, or guarantee coverage. Coverage is subject to underwriting and the terms, conditions and exclusions of the policy issued. Submitting a quote request does not bind coverage. Coverage is not in force until confirmed in writing by ${site.name} or the insurance company.</p>`);
 simple("/accessibility/", "Accessibility", "Accessibility Statement", `<p>${site.name} is committed to making this website usable for everyone, and we aim to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.</p><p>If you have difficulty using any part of this site, please call us at ${C.tel} or email <a href="mailto:${site.email}">${site.email}</a>, and we'll help you directly. Customers with hearing or speech disabilities can dial 7-1-1.</p>`);
 simple("/producer-compensation-disclosure/", "Producer Compensation Disclosure", "Producer Compensation Disclosure", `<p>${site.legalName} is an independent insurance agency. We are typically compensated by the insurance companies we place business with, usually through commissions that are a percentage of the premium you pay. Some insurance companies may also pay contingent or bonus compensation based on factors such as the volume or profitability of business we place with them. You may request information about the compensation we expect to receive on your policy by contacting us.</p>`);
-simple("/careers/", "Careers", "Careers at Yeti Insurance", `<p>We're always glad to hear from licensed, client-focused insurance professionals who want to grow with an independent Texas agency.</p>${site.careersOpenings.length ? `<h2>Open positions</h2><ul>${site.careersOpenings.map(o => `<li>${o}</li>`).join("")}</ul>` : "<p>We don't have specific openings listed right now, but we're always happy to meet great people.</p>"}<p>To apply, email your résumé to <a href="mailto:${site.email}">${site.email}</a>.</p>`);
-simple("/referrals/", "Referrals", "Refer a friend or business", `<p>The best compliment you can give us is a referral. If you know a business owner, homeowner or driver who could use a second opinion on their insurance, send them our way.</p><p><button type="button" class="btn btn-maroon" data-open="quote-modal">Start a quote for someone</button></p>`);
+simple("/careers/", "Careers", "Careers at Yeti Insurance", `<p>We're always glad to hear from licensed, client-focused insurance professionals who want to grow with an independent Texas agency.</p>${site.careersOpenings.length ? `<h2>Open positions</h2><ul>${site.careersOpenings.map(o => `<li>${o}</li>`).join("")}</ul>` : "<p>We don't have specific openings listed right now, but we're always happy to meet great people.</p>"}<h2>What we look for</h2><ul><li>A Texas property &amp; casualty or personal lines license (or the drive to get one)</li><li>Clear, friendly communication with clients and carriers</li><li>Attention to detail and follow-through</li><li>Bilingual skills are a plus</li></ul><p>To apply, email your résumé to <a href="mailto:${site.email}">${site.email}</a>.</p>`);
+simple("/referrals/", "Referrals", "Refer a friend or business", `<p>The best compliment you can give us is a referral. If you know a business owner, homeowner or driver who could use a second opinion on their insurance, send them our way.</p><h2>How it works</h2><ol class="steps-list" style="margin-top:16px"><li><div>Share our number, <a href="tel:${site.phoneE164}">${site.phone}</a>, or this website with a friend, family member or business owner.</div></li><li><div>Or start a quote for them yourself. Just mention their name and that they said it's OK to contact them.</div></li><li><div>We'll give them the same honest advice and carrier comparison our clients get, with no obligation.</div></li></ol><p style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap"><button type="button" class="btn btn-maroon" data-open="quote-modal">Start a quote for someone</button><a class="btn btn-line" href="tel:${site.phoneE164}">Call ${site.phone}</a></p><p class="muted" style="margin-top:16px">Thank you for trusting us with the people you care about.</p>`);
 
 add({
   path: "/404", noindex: true,
