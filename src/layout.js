@@ -27,7 +27,7 @@ const NAV = [
   ] },
 ];
 const TOP_LINKS = [["/claims/", "Claims"], ["/resources/", "Resources"], ["/contact/", "Contact"]];
-const MOBILE_ONLY = [["/client-service/", "Client Service"], ["/client-service/payments/", "Make a Payment"]];
+const MOBILE_ONLY = [["/client-service/", "Client Service"]];
 
 function nav(current) {
   const inSection = n => [n.hub[0], ...n.items.map(i => i[0])].some(u => current === u || (u !== "/" && current.startsWith(u) && u.length > 1));
@@ -117,7 +117,7 @@ ${ld}
 
 <div class="util"><div class="wrap">
   <span>Serving all of Texas since ${site.founded}<span class="hide-sm"><span class="sep">|</span><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google</a></span></span>
-  <span><a class="hide-md" href="/client-service/payments/">Make a Payment</a><span class="sep hide-md">|</span><a class="hide-md" href="/client-service/">Client Service</a><span class="sep hide-md">|</span><button type="button" data-open="claim-modal" style="background:none;border:0;color:#fff;cursor:pointer;font-size:13px">Report a Claim</button></span>
+  <span><a class="hide-md" href="/client-service/">Client Service</a><span class="sep hide-md">|</span><button type="button" data-open="claim-modal" style="background:none;border:0;color:#fff;cursor:pointer;font-size:13px">Report a Claim</button></span>
 </div></div>
 
 <header class="site-header"><div class="wrap">
@@ -156,7 +156,6 @@ ${page.noCta ? "" : C.ctaBand()}
     </ul></div>
     <div><h2>Clients</h2><ul>
       <li><a href="/client-service/">Client Service Center</a></li>
-      <li><a href="/client-service/payments/">Make a Payment</a></li>
       <li><a href="/claims/">Claims Center</a></li>
       <li><a href="/partners/">Lender &amp; Realtor Partners</a></li>
       <li><a href="/quote/">Get a Quote</a></li>
@@ -186,7 +185,7 @@ ${page.noCta ? "" : C.ctaBand()}
   <div class="modal-box"><button type="button" class="modal-x" data-close aria-label="Close">×</button>${C.claimForm()}</div>
 </div>
 
-<div class="mbar"><a href="tel:${site.phoneE164}">Call</a><button type="button" class="q" data-open="quote-modal">Quote</button><a href="/claims/">Claims</a><a href="/client-service/payments/">Pay</a></div>
+<div class="mbar"><a href="tel:${site.phoneE164}">Call</a><button type="button" class="q" data-open="quote-modal">Quote</button><a href="/claims/">Claims</a><a href="/client-service/">Service</a></div>
 <button type="button" class="totop" aria-label="Back to top">↑</button>
 <script src="/assets/js/main.js" defer></script>
 </body>

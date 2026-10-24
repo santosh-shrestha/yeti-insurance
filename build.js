@@ -57,6 +57,8 @@ write("_redirects", [
   "/team        /about/team/   301",
   "/claim       /claims/       301",
   "/upload      /client-service/ 301",
+  "/client-service/payments/*  /client-service/  301",
+  "/client-service/payments    /client-service/  301",
   "/home        /              301",
   "/blank       /              301",
 ].join("\n") + "\n");
@@ -118,7 +120,6 @@ if (/maps\/search/.test(site.googleReviewsUrl)) todo.push("Direct Google reviews
 const realCarriers = site.carriers.filter(c => !isPH(c.name));
 if (realCarriers.length < 3) todo.push(`Carriers: only ${realCarriers.length} listed — carrier strip is hidden until 3+ (site.js → carriers)`);
 if (realCarriers.some(c => isPH(c.claims))) todo.push("Carrier claim phone numbers (site.js → carriers[].claims)");
-if (!realCarriers.some(c => c.payUrl)) todo.push("Carrier payment links (site.js → carriers[].payUrl)");
 if (site.story.every(isPH)) todo.push("Founder story (site.js → story)");
 if (require("./src/components").REVIEWS_REAL === 0) todo.push("Real Google reviews (components.js → REVIEWS) — slider hidden until added");
 ["logo-navy.png", "logo-white.png", "og-image.jpg", "hero-poster.jpg"].forEach(f => { if (!fs.existsSync(path.join(ASSETS, "img", f))) todo.push(`Image: src/assets/img/${f}`); });

@@ -85,7 +85,7 @@ add({
 
 <div class="paths"><div class="wrap">
   <div class="path rv"><small>New client</small><h2>Get insured</h2><p>We shop multiple carriers to find the right coverage for your business, home or vehicles.</p><button type="button" class="btn btn-maroon" data-open="quote-modal">Start a Quote</button></div>
-  <div class="path rv"><small>Existing client</small><h2>Manage your policy</h2><p>Make a payment, request ID cards or a certificate, change a policy or report a claim.</p><a class="btn btn-line" href="/client-service/">Client Service Center</a></div>
+  <div class="path rv"><small>Existing client</small><h2>Manage your policy</h2><p>Request ID cards or a certificate, change a policy, ask a billing question or report a claim.</p><a class="btn btn-line" href="/client-service/">Client Service Center</a></div>
   <div class="path rv"><small>Lender, realtor or partner</small><h2>Service a client</h2><p>Request evidence of insurance, mortgagee changes or a fast quote for a closing.</p><a class="btn btn-line" href="/partners/">Partner Requests</a></div>
 </div></div>
 
@@ -274,11 +274,11 @@ ${C.faqSection([["Should I call my carrier or my agent first?", "For emergencies
 });
 
 /* ================= CLIENT SERVICE ================= */
-const ACTIONS = [["Make a payment", "Pay your carrier directly or ask us for help.", "/client-service/payments/"], ["Certificate of insurance", "Request a COI or add an additional insured.", "Certificate of insurance"], ["ID cards", "Get auto ID cards sent to you.", "Auto ID cards"], ["Policy change", "Add a driver, vehicle or location, or update coverage.", "Policy change"], ["Report a claim", "Notify us and get carrier claim numbers.", "claim"], ["Coverage review", "Schedule your annual review with your agent.", "Coverage review"]];
+const ACTIONS = [["Billing & payments", "Your agent handles payments. Send a billing question and we'll call you.", "Billing question"], ["Certificate of insurance", "Request a COI or add an additional insured.", "Certificate of insurance"], ["ID cards", "Get auto ID cards sent to you.", "Auto ID cards"], ["Policy change", "Add a driver, vehicle or location, or update coverage.", "Policy change"], ["Report a claim", "Notify us and get carrier claim numbers.", "claim"], ["Coverage review", "Schedule your annual review with your agent.", "Coverage review"]];
 add({
   path: "/client-service/", priority: 0.6,
-  title: "Client Service Center | Payments, COIs, ID Cards | Yeti Insurance",
-  description: "Existing Yeti Insurance clients: make a payment, request a certificate of insurance or ID cards, change your policy or report a claim.",
+  title: "Client Service Center | COIs, ID Cards, Policy Changes | Yeti Insurance",
+  description: "Existing Yeti Insurance clients: request a certificate of insurance or ID cards, change your policy, ask a billing question or report a claim.",
   breadcrumbs: [["/client-service/", "Client Service"]],
   body: `${C.smallHero({ kicker: "Client service", h1: "Client Service Center", sub: "Everything existing clients need in one place. We handle most requests promptly, often the same business day.", ctas: false })}
 <section><div class="wrap">
@@ -288,15 +288,6 @@ add({
     <div class="rv">${C.serviceForm()}</div>
   </div>
 </div></section>`,
-});
-add({
-  path: "/client-service/payments/", priority: 0.5,
-  title: "Make a Payment | Yeti Insurance Agency",
-  description: "Pay your insurance premium. Most Yeti Insurance policies are billed and paid directly through the insurance company.",
-  breadcrumbs: [["/client-service/", "Client Service"], ["/client-service/payments/", "Payments"]],
-  body: `${C.smallHero({ kicker: "Payments", h1: "Make a payment", sub: "Most policies are billed and paid directly through your insurance company. Choose your carrier below.", ctas: false })}
-<section><div class="wrap"><div class="actions">${site.carriers.filter(c => !C.isPH(c.name) && c.payUrl).map(c => `<a class="action rv" href="${c.payUrl}" target="_blank" rel="noopener"><span class="action-t">${c.name}</span><p>Pay online with ${c.name}</p><span class="arrow" aria-hidden="true">→</span></a>`).join("") || `<div class="action"><span class="action-t">Pay your carrier directly</span><p>Your bill and ID card list your insurance company and how to pay. We're happy to help. Call ${site.phone}.</p></div>`}</div>
-<p class="lead" style="margin-top:32px">Not sure who your carrier is, or need help with a bill? Call ${C.tel} or <a class="link" href="/client-service/">send a billing question</a>.</p></div></section>`,
 });
 
 /* ================= PARTNERS ================= */
