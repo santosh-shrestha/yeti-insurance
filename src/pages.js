@@ -64,7 +64,7 @@ add({
   schema: [C.faqSchema(homeFaq), { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url + "/" }],
   body: `
 <section class="hero" style="padding:0">
-  <div class="hero-bg"></div>
+  <div class="hero-bg"><img src="/assets/img/hero.jpg" alt="" width="960" height="600" fetchpriority="high"></div>
   <div class="wrap">
     <div>
       <p class="kicker">Serving all of Texas · Since ${site.founded}</p>
@@ -223,12 +223,6 @@ add({
   ${C.pointsList([["Honest advice", "We explain coverage in plain English, including what isn't covered."], ["Real choices", "We compare multiple carriers instead of selling one company's products."], ["Responsive service", "Certificates, ID cards and policy changes are usually handled the same business day."], ["Claim advocacy", "We help you report claims and follow up with the carrier."]])}
 </div></section>
 <section><div class="wrap"><p class="kicker rv">Our team</p><h2 class="rv">Meet your agents</h2>${C.teamGrid()}<p style="margin-top:28px"><a class="link" href="/about/team/">Full team page →</a></p></div></section>
-<section style="background:var(--bg)"><div class="wrap split">
-  <figure class="rv office-fig"><img src="/assets/img/office/building.jpg" alt="Our office building at 222 W Las Colinas Blvd, Irving, Texas" loading="lazy" width="960" height="720"></figure>
-  <div class="rv"><p class="kicker">Our office</p><h2>Based in Las Colinas, serving all of Texas</h2>
-   <p class="lead">Visit us at ${site.address.street}, ${site.address.city}, TX ${site.address.zip}. Most clients work with us by phone and email, and you're always welcome to stop by.</p>
-   <p style="margin-top:22px"><a class="link" href="/contact/">Directions &amp; hours →</a></p></div>
-</div></section>
 ${C.communityGallery(3, true)}
 ${C.credStrip()}
 ${C.reviewsSection()}`,
@@ -329,8 +323,8 @@ add({
 </div></section>
 <section style="padding-top:0"><div class="wrap"><p class="kicker rv">Our office</p><h2 class="rv">Visit us in Las Colinas</h2>
   <ul class="gallery two" style="margin-bottom:40px">
-   <li class="rv"><img src="/assets/img/office/building.jpg" alt="Our office building at 222 W Las Colinas Blvd, Irving" loading="lazy" width="960" height="720"></li>
-   <li class="rv"><img src="/assets/img/office/workspace.jpg" alt="Meeting space at the Yeti Insurance office" loading="lazy" width="960" height="720"></li>
+   <li class="rv"><img src="/assets/img/office/building.jpg" alt="Our office building at 222 W Las Colinas Blvd, Irving" loading="lazy" width="800" height="600"></li>
+   <li class="rv"><img src="/assets/img/office/workspace.jpg" alt="Meeting space at the Yeti Insurance office" loading="lazy" width="800" height="600"></li>
   </ul><div class="map rv"><iframe title="Map to ${site.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${site.googleMapEmbed}"></iframe></div></div></section>`,
 });
 
