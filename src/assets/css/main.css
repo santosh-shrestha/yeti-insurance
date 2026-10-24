@@ -636,3 +636,11 @@ section{padding:104px 0}
 .ctable .cnote{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;font-weight:400}
 /* Carrier names: compact chips on phones */
 @media(max-width:640px){.logos{gap:8px}.logos li{min-width:0;padding:8px 12px;font-size:14px}}
+
+/* Carrier strip v2: borderless wordmarks / logos */
+.carriers .logos{gap:14px 44px;max-width:1040px;margin:22px auto 0}
+.carriers .logos li{border:0;padding:4px 0;min-width:0;font-size:19px;color:#5d6e82;letter-spacing:.01em;transition:color .2s}
+.carriers .logos li:hover{color:var(--blue)}
+.carriers .logos li.has-logo img{height:40px;width:auto;max-width:150px;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .2s,opacity .2s}
+.carriers .logos li.has-logo:hover img{filter:none;opacity:1}
+@media(max-width:640px){.carriers .logos{gap:10px 26px}.carriers .logos li{font-size:16px;padding:2px 0}.carriers .logos li.has-logo img{height:30px}}

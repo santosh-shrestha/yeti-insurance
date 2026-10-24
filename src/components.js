@@ -185,8 +185,16 @@ const credStrip = () => `<div class="cred"><div class="wrap">
   <div class="c rv"><b>Independent</b><span>Multiple carriers compared</span></div>
 </div></div>`;
 
-const carrierStrip = () => site.carriers.filter(c => !isPH(c.name)).length < 3 ? "" : `<div class="carriers"><div class="wrap"><p>We compare coverage from leading insurance companies, including</p>
-  <ul class="logos">${site.carriers.filter(c => !isPH(c.name)).map(c => c.logo ? `<li><img src="${c.logo}" alt="${c.name}" width="140" height="36" loading="lazy"></li>` : `<li>${c.name}</li>`).join("")}</ul></div></div>`;
+// Carrier logos: drop official files into src/assets/img/carriers/<slug>.svg|png|webp (slug = name in lowercase with dashes,
+// e.g. "liberty-mutual.svg", "the-hartford.png"). Any carrier without a file is shown as a clean text wordmark.
+const carrierSlug = n => n.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const carrierLogo = c => c.logo || ["svg", "png", "webp"].map(e => `/assets/img/carriers/${carrierSlug(c.name)}.${e}`).find(hasAsset) || "";
+const carrierStrip = () => {
+  const list = site.carriers.filter(c => !isPH(c.name));
+  if (list.length < 3) return "";
+  return `<div class="carriers"><div class="wrap"><p>We compare coverage from leading insurance companies, including</p>
+  <ul class="logos">${list.map(c => { const l = carrierLogo(c); return l ? `<li class="has-logo"><img src="${l}" alt="${c.name}" height="40" loading="lazy"></li>` : `<li>${c.name}</li>`; }).join("")}</ul></div></div>`;
+};
 
 const IC_PHONE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';
 const IC_MAIL = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
