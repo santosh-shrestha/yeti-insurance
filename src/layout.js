@@ -142,7 +142,7 @@ ${page.noCta ? "" : C.ctaBand()}
       ${C.brand("white")}
       <p style="margin-top:18px;max-width:300px">Independent insurance agency serving Texas businesses and families since ${site.founded}.</p>
       <address>${site.address.street}<br>${site.address.city}, ${site.address.state} ${site.address.zip}<br><a href="tel:${site.phoneE164}" style="color:#fff">${site.phone}</a><br>${site.hours.label}</address>
-      <p style="margin-top:14px"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener" style="color:#fff"><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google · Read reviews</a></p>
+      <p style="margin-top:14px"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener" style="color:#fff"><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google${C.RC() ? ` · ${C.RC()}` : ""}</a></p>
       ${C.socialLinks()}
     </div>
     <div><h2>Insurance</h2><ul>

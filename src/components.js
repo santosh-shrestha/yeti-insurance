@@ -30,6 +30,7 @@ function brand(variant = "navy") {
   </a>`;
 }
 
+const RC = () => isPH(site.googleReviewCount) ? "" : `${site.googleReviewCount} reviews`;
 const googleBadge = () => `<a class="g-inline" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><span class="sr-only"> out of 5 stars</span></span><span style="opacity:.85">Google reviews →</span></a>`;
 
 /* ---------- Forms ---------- */
@@ -164,7 +165,7 @@ function reviewsSection() {
   const real = REVIEWS.filter(r => !isPH(r[0]) && !isPH(r[1]));
   if (!real.length) return `<section class="testi" aria-labelledby="reviews-h"><div class="wrap"><div class="rv-head rv">
     <div><p class="kicker">Client reviews</p><h2 id="reviews-h">Rated ${site.googleRating} by our clients on Google</h2><p class="lead" style="color:#c9d3df">See what Texas business owners, homeowners and drivers say about working with our team.</p></div>
-    <a class="g-card" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><small><span class="g-count"></span>Read our reviews on Google →</small></span></a>
+    <a class="g-card" href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><span class="g-logo" aria-hidden="true">G</span><span><b>${site.googleRating}</b> <span class="gstars" aria-hidden="true">★★★★★</span><small><span class="g-count">${RC() ? RC() + " · " : ""}</span>Read our reviews on Google →</small></span></a>
   </div>
   <div class="live-reviews" data-src="/.netlify/functions/google-reviews" hidden><ul class="lr-list" aria-label="Recent Google reviews"></ul><p class="lr-foot">Reviews shown are from Google. <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener">Read all reviews on Google →</a></p></div>
   </div></section>`;
@@ -180,7 +181,7 @@ function reviewsSection() {
 
 const credStrip = () => `<div class="cred"><div class="wrap">
   <div class="c rv"><b>${new Date().getFullYear() - site.founded} years</b><span>Serving Texas since ${site.founded}</span></div>
-  <div class="c rv"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><b>${site.googleRating} ★</b><span>Google rating · read reviews</span></a></div>
+  <div class="c rv"><a href="${site.googleReviewsUrl}" target="_blank" rel="noopener"><b>${site.googleRating} ★</b><span>${RC() ? `Google rating · ${RC()}` : "Google rating · read reviews"}</span></a></div>
   <div class="c rv"><b>Licensed</b><span>Texas Department of Insurance</span></div>
   <div class="c rv"><b>Independent</b><span>Multiple carriers compared</span></div>
 </div></div>`;
@@ -205,7 +206,7 @@ const teamGrid = (h = "h3") => `<ul class="team-grid">${site.team.map(t => `<li 
 
 const trustBar = () => `<div class="trustbar"><div class="wrap">
   <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7a1f2b" stroke-width="2" aria-hidden="true"><path d="M12 3l8 3.5v5.5c0 5-3.5 8-8 9.5-4.5-1.5-8-4.5-8-9.5V6.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>Licensed by the Texas Department of Insurance</span>
-  <span><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google · <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener">Read reviews</a></span>
+  <span><span class="gstars" aria-hidden="true">★★★★★</span> ${site.googleRating} on Google${RC() ? ` (${RC()})` : ""} · <a href="${site.googleReviewsUrl}" target="_blank" rel="noopener">Read reviews</a></span>
   <span>Independent agency since ${site.founded}</span>
   <span>Local office: ${site.address.city}, TX</span>
 </div>${site.affiliations.length ? `<ul class="affil wrap">${site.affiliations.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}</div>`;
@@ -221,4 +222,4 @@ function pointsList(items, ic = icon.check, h = "h3") {
   return `<ul class="points">${items.map(([t, d]) => `<li class="rv">${ic}<div><${h}>${t}</${h}><p>${d}</p></div></li>`).join("")}</ul>`;
 }
 
-module.exports = { socialLinks, hasAsset, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
+module.exports = { RC, socialLinks, hasAsset, REVIEWS_REAL: REVIEWS.filter(r => !isPH(r[0])).length, isPH, trustBar, esc, tel, icon, brand, googleBadge, quoteForm, claimForm, serviceForm, contactForm, smallHero, faqSection, faqSchema, reviewsSection, credStrip, carrierStrip, teamGrid, ctaBand, pointsList };
