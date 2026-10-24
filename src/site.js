@@ -14,7 +14,7 @@ module.exports = {
   founded: 2016,
   phone: "(469) 345-6419",
   phoneE164: "+14693456419",
-  email: "shraddha@yetiinsu.com",            // [confirm general inbox, e.g. info@yetiinsu.com]
+  email: "info@yetiinsu.com",               // general inbox (contact page, footer, schema)
   address: {
     street: "222 W Las Colinas Blvd #1650E",
     city: "Irving",
@@ -62,8 +62,6 @@ module.exports = {
   team: [
     { initials: "SS", name: "Shraddha Shrestha", role: "CEO & Managing Director", license: "[TX lic. #]", phone: "(469) 345-6419", tel: "+14693456419", email: "shraddha@yetiinsu.com", photo: "/assets/img/team/shraddha-shrestha.jpg", linkedin: "https://www.linkedin.com/in/shraddha-shrestha-7338a4172/" },
     { initials: "SP", name: "Suraj Poudyal", role: "Principal Agent & Co-Owner", license: "[TX lic. #]", phone: "(214) 995-0137", tel: "+12149950137", email: "suraj@yetiinsu.com", photo: "/assets/img/team/suraj-poudyal.jpg", linkedin: "https://www.linkedin.com/in/suraj-poudyal-24a42010/" },
-    { initials: "AS", name: "Anjana Shrestha", role: "Agent & Managing Partner", license: "[TX lic. #]", phone: "(757) 412-5128", tel: "+17574125128", email: "anjana@yetiinsu.com", photo: "/assets/img/team/anjana-shrestha.jpg", linkedin: "https://www.linkedin.com/in/anjana-shrestha-bhaila-46143b142/" },
-    { initials: "RT", name: "Radha Thapa", role: "Partner", license: "[TX lic. #]", phone: "(603) 674-5121", tel: "+16036745121", email: "radha@yetiinsu.com", photo: "/assets/img/team/radha-thapa.jpg", linkedin: "https://www.linkedin.com/in/radha-thapa-98a41050/" },
   ],
 
   // About page — founder story paragraphs and milestones. Anything still in [brackets] is hidden automatically.

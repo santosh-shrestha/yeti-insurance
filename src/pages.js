@@ -17,6 +17,7 @@ const INDUSTRIES = [
   ["Contractors", "Contractors & Trades", "Coverage that meets job-site and contract requirements, with same-day certificates.", ["General Liability", "Tools & Equipment", "Builder's Risk", "Workers' Comp"]],
   ["Hospitality", "Hotels & Motels", "Protects your property and guests and helps keep you open after a loss.", ["Commercial Property", "General Liability", "Business Income", "Umbrella"]],
   ["Transportation", "Trucking & Transportation", "Commercial auto and fleet coverage for Texas roads.", ["Commercial Auto", "Cargo", "Physical Damage", "Umbrella"]],
+  ["Uber Black", "Uber Black & Livery", "Commercial auto (livery) coverage for Uber Black, Black SUV, limo and black car drivers and fleets.", ["Commercial Auto (Livery)", "Physical Damage", "Uninsured Motorist", "Platform Certificates"]],
   ["Real Estate", "Landlords & Property Owners", "Commercial and residential rental property owners.", ["Commercial Property", "Landlord Policies", "General Liability", "Umbrella"]],
 ];
 const FINDER = [
@@ -28,6 +29,7 @@ const FINDER = [
   ["My business owns a building, equipment or inventory", ["commercial-property"]],
   ["My business uses vehicles", ["commercial-auto"]],
   ["I'm a contractor or work on job sites", ["contractors"]],
+  ["I drive for Uber Black or a limo / black car service", ["uber-black-livery"]],
   ["I want extra liability protection", ["personal-umbrella", "commercial-umbrella"]],
 ];
 const finderPages = { home: { url: hubs.home.path, label: "Homeowners", group: "home" }, auto: { url: hubs.auto.path, label: "Auto", group: "auto" } };
@@ -119,7 +121,7 @@ ${C.reviewsSection()}
    <a class="btn btn-line" href="/commercial-insurance-texas/">Commercial Insurance</a></div>
   <div class="rv">
    <div class="tabs" role="tablist" aria-label="Industries">${INDUSTRIES.map((x, i) => `<button type="button" role="tab" id="tab-${i}" aria-controls="panel-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${x[0]}</button>`).join("")}</div>
-   ${INDUSTRIES.map((x, i) => `<div class="tabpanel" role="tabpanel" id="panel-${i}" aria-labelledby="tab-${i}"${i ? " hidden" : ""}><h3>${x[1]}</h3><p>${x[2]}</p><ul class="chips">${x[3].map(c => `<li>${c}</li>`).join("")}</ul><p style="margin:22px 0 0"><a class="link" href="/commercial-insurance-texas/">See commercial coverage →</a></p></div>`).join("")}
+   ${INDUSTRIES.map((x, i) => `<div class="tabpanel" role="tabpanel" id="panel-${i}" aria-labelledby="tab-${i}"${i ? " hidden" : ""}><h3>${x[1]}</h3><p>${x[2]}</p><ul class="chips">${x[3].map(c => `<li>${c}</li>`).join("")}</ul><p style="margin:22px 0 0"><a class="link" href="${x[0] === "Uber Black" ? "/commercial-insurance-texas/uber-black-livery/" : "/commercial-insurance-texas/"}">See ${x[0] === "Uber Black" ? "Uber Black coverage" : "commercial coverage"} →</a></p></div>`).join("")}
   </div>
 </div></section>
 

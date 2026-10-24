@@ -9,6 +9,7 @@ const NAV = [
     ["/commercial-insurance-texas/commercial-auto/", "Commercial Auto & Fleet"],
     ["/commercial-insurance-texas/workers-compensation/", "Workers' Compensation"],
     ["/commercial-insurance-texas/contractors/", "Contractors Insurance"],
+    ["/commercial-insurance-texas/uber-black-livery/", "Uber Black & Livery"],
     ["/commercial-insurance-texas/commercial-umbrella/", "Commercial Umbrella"],
   ], cta: `<b>Not sure what you need?</b>Answer a few questions and we'll suggest coverage.<a href="/#finder">Try the coverage finder →</a>` },
   { label: "Personal", hub: ["/home-insurance-texas/", "Home Insurance", "Wind, hail &amp; liability protection"], items: [
@@ -147,6 +148,7 @@ ${page.noCta ? "" : C.ctaBand()}
       <li><a href="/commercial-insurance-texas/general-liability/">General Liability</a></li>
       <li><a href="/commercial-insurance-texas/workers-compensation/">Workers' Compensation</a></li>
       <li><a href="/commercial-insurance-texas/contractors/">Contractors Insurance</a></li>
+      <li><a href="/commercial-insurance-texas/uber-black-livery/">Uber Black &amp; Livery</a></li>
       <li><a href="/home-insurance-texas/">Home Insurance</a></li>
       <li><a href="/auto-insurance-texas/">Auto Insurance</a></li>
     </ul></div>
