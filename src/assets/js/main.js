@@ -183,10 +183,11 @@
     const cov = coverage || document.body.dataset.coverage;
     if (cov && form) { const r = $(`input[name="coverage"][value="${cov}"]`, form); if (r) r.checked = true; }
     m.hidden = false; requestAnimationFrame(() => m.classList.add("on"));
+    if (id === "quote-modal") $$(".mbar .q").forEach(b => b.classList.add("on"));
     document.body.style.overflow = "hidden";
     setTimeout(() => { const f = $("input:not([type=hidden]):not(.hp input),select,textarea,button", $(".modal-box", m)); f && f.focus(); }, 60);
   };
-  const closeModal = m => { if (!m) return; m.classList.remove("on"); hideTimer = setTimeout(() => { m.hidden = true; }, 200); document.body.style.overflow = ""; lastFocus && lastFocus.focus(); };
+  const closeModal = m => { if (!m) return; m.classList.remove("on"); $$(".mbar .q").forEach(x => x.classList.remove("on")); hideTimer = setTimeout(() => { m.hidden = true; }, 200); document.body.style.overflow = ""; lastFocus && lastFocus.focus(); };
   document.addEventListener("click", e => {
     const o = e.target.closest("button[data-open], a[data-open]");
     if (o) { e.preventDefault(); openModal(o.dataset.open, o.dataset.coverage); return; }

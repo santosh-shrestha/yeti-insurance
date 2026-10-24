@@ -190,7 +190,7 @@ ${page.noCta ? "" : C.ctaBand()}
   <div class="modal-box"><button type="button" class="modal-x" data-close aria-label="Close">×</button>${C.claimForm()}</div>
 </div>
 
-<nav class="mbar" aria-label="Quick actions"><a href="tel:${site.phoneE164}">Call</a><button type="button" class="q" data-open="quote-modal">Quote</button><a href="/claims/"${page.path.startsWith("/claims/") ? ' aria-current="page"' : ""}>Claims</a><a href="/client-service/"${page.path.startsWith("/client-service/") ? ' aria-current="page"' : ""}>Service</a></nav>
+<nav class="mbar" aria-label="Quick actions"><a href="tel:${site.phoneE164}">Call</a>${page.path === "/quote/" ? '<a class="q" href="/quote/" aria-current="page">Quote</a>' : '<button type="button" class="q" data-open="quote-modal">Quote</button>'}<a href="/claims/"${page.path.startsWith("/claims/") ? ' aria-current="page"' : ""}>Claims</a><a href="/client-service/"${page.path.startsWith("/client-service/") ? ' aria-current="page"' : ""}>Service</a></nav>
 <button type="button" class="totop" aria-label="Back to top">↑</button>
 <script src="/assets/js/main.js" defer></script>
 </body>
