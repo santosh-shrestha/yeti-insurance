@@ -39,6 +39,7 @@ function quoteForm({ id = "q", coverage = "", heading = "Request a quote", tag =
   return `<div class="card-form" ${id === "qf" ? 'id="qf"' : ""}>
   <form class="js-form" name="quote" method="POST"${formAction}${netlify} data-ref="YQ" novalidate>
     <input type="hidden" name="form-name" value="quote">
+    <input type="hidden" name="page" value="">
     ${honeypot}
     <div class="progress" aria-hidden="true"><i></i></div>
     <div class="step on">
@@ -72,6 +73,7 @@ function claimForm() {
   return `<div class="card-form">
   <form class="js-form" name="claim-notice" method="POST"${formAction}${netlify} data-ref="YC" novalidate>
     <input type="hidden" name="form-name" value="claim-notice">
+    <input type="hidden" name="page" value="">
     ${honeypot}
     <h2 id="claim-title" style="font-size:24px">Notify us of a claim</h2>
     <p class="note">For emergencies or after hours, call your carrier's 24/7 claims line first. We'll follow up during business hours.</p>
@@ -95,6 +97,7 @@ function contactForm() {
   return `<div class="card-form">
   <form class="js-form" name="contact" method="POST"${formAction}${netlify} data-ref="YM" novalidate>
     <input type="hidden" name="form-name" value="contact">
+    <input type="hidden" name="page" value="">
     ${honeypot}
     <h2 style="font-size:24px">Send us a message</h2><p class="note">We reply within one business day. Looking for a quote? <button type="button" class="link" style="background:none;border:0;border-bottom:1px solid;cursor:pointer;padding:0;font-size:inherit" data-open="quote-modal">Start a quote</button>.</p>
     <div class="f"><label for="m-name">Full name</label><input id="m-name" name="name" autocomplete="name" data-rule="name"><span class="err-msg">Please enter your name.</span></div>
@@ -116,6 +119,7 @@ function serviceForm() {
   return `<div class="card-form">
   <form class="js-form" name="service-request" method="POST"${formAction}${netlify} data-ref="YS" novalidate>
     <input type="hidden" name="form-name" value="service-request">
+    <input type="hidden" name="page" value="">
     ${honeypot}
     <div class="f"><label for="svc-type">Request type</label><select id="svc-type" name="request_type" data-rule="required"><option value="">Select…</option>${types.map(t => `<option>${t}</option>`).join("")}</select><span class="err-msg">Choose a request type.</span></div>
     <div class="two">

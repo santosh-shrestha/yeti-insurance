@@ -90,6 +90,7 @@
 
   function initForm(form) {
     if (form.dataset.ready) return; form.dataset.ready = "1";
+    const pg = form.querySelector('input[name="page"]'); if (pg) pg.value = location.pathname;
     const steps = $$(".step", form), bar = $(".progress i", form);
     let cur = 0;
     const show = i => {
