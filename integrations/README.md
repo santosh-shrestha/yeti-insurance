@@ -35,7 +35,15 @@ Every form now includes a hidden **Page** field, so you can see which page a lea
 4. Copy the **Web app URL**. It ends in `/exec`.
 5. Optional check: open that URL in your browser. It should say *"Yeti Insurance form webhook is running."*
 
-### 3. Connect the website (recommended)
+### 3. Connect Netlify → Sheet (recommended: Netlify function)
+The site includes `netlify/functions/submission-created.js`. Netlify runs it automatically after every **verified** submission, and it forwards the submission to the sheet.
+1. In Netlify, go to **Site configuration → Environment variables → Add a variable**.
+   - Key: `SHEETS_WEBHOOK_URL`
+   - Value: your web app URL plus `?token=YOUR-TOKEN`
+2. Push or redeploy the site.
+3. Don't use the "HTTP POST request" form notification. Apps Script replies with a redirect, so Netlify counts every call as a failure and eventually turns the notification off.
+
+### 3c. Alternative: send directly from the website
 1. In `src/site.js`, set `sheetsUrl` to your Web app URL (the one ending in `/exec`).
 2. Set `sheetsToken` to the same secret you used on line 13 of the script.
 3. Run `git add -A && git commit -m "Connect Google Sheet" && git push`.
