@@ -12,6 +12,10 @@
 
 const SECRET_TOKEN = "CHANGE-ME-to-a-long-random-string"; // must match ?token=... in the Netlify webhook URL
 
+// Only needed if this script was NOT created from the sheet (Extensions → Apps Script).
+// Paste the ID from the sheet's URL: docs.google.com/spreadsheets/d/<THIS PART>/edit
+const SHEET_ID = "";
+
 // Friendly column order per form (any extra fields are appended at the end)
 const COLUMNS = {
   "quote":           ["Received", "Name", "Phone", "Email", "Coverage", "ZIP", "Message", "Page", "Netlify ID"],
@@ -29,7 +33,10 @@ const COVERAGE_LABELS = { commercial: "Business", home: "Home", auto: "Auto", bu
 
 function doPost(e) {
   try {
-    if (!e || !e.parameter || e.parameter.token !== SECRET_TOKEN) return json_({ ok: false, error: "unauthorized" });
+    if (!e || !e.parameter || e.parameter.token !== SECRET_TOKEN) {
+      console.warn("Rejected: token missing or wrong. Check ?token=... in the Netlify URL matches SECRET_TOKEN.");
+      return json_({ ok: false, error: "unauthorized" });
+    }
 
     // Two ways in: (1) directly from the website forms (form-encoded), (2) Netlify webhook (JSON)
     let body, data, form;
@@ -39,14 +46,15 @@ function doPost(e) {
       data = Object.assign({}, e.parameter); delete data.token;
       form = String(data["form-name"] || "unknown"); body = { created_at: new Date().toISOString(), id: "web" };
     }
-    if (data.company_website) return json_({ ok: true, skipped: "spam" });   // honeypot filled → bot
-    if (!COLUMNS[form]) return json_({ ok: false, error: "unknown form" });
+    if (data.company_website) { console.log("Skipped: spam (honeypot)"); return json_({ ok: true, skipped: "spam" }); }
+    if (!COLUMNS[form]) { console.warn("Skipped: unknown form name: " + form); return json_({ ok: false, error: "unknown form" }); }
     delete data["form-name"]; delete data.company_website; delete data.ip; delete data.user_agent; delete data.referrer;
     if (data.coverage) data.coverage = COVERAGE_LABELS[data.coverage] || data.coverage;
 
     const lock = LockService.getScriptLock(); lock.waitLock(10000);
     try {
-      const ss = SpreadsheetApp.getActiveSpreadsheet();
+      const ss = SHEET_ID ? SpreadsheetApp.openById(SHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+      if (!ss) throw new Error("No spreadsheet found. Create the script from the sheet (Extensions → Apps Script) or set SHEET_ID.");
       const sheet = ss.getSheetByName(form) || ss.insertSheet(form);
 
       // Header row: preferred order + any new fields
@@ -65,6 +73,7 @@ function doPost(e) {
       sheet.appendRow(headers.map(h => values[h] !== undefined ? values[h] : ""));
     } finally { lock.releaseLock(); }
 
+    console.log("Saved row to tab: " + form);
     return json_({ ok: true });
   } catch (err) {
     console.error(err);
