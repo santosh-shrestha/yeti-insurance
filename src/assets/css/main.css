@@ -168,6 +168,7 @@ a:hover .arrow{transform:translateX(4px)}
 .legal a{text-decoration:underline}
 .hp{position:absolute;left:-9999px}
 .done{text-align:center;padding:24px 0}
+.done:focus{outline:none}
 .done .ck{width:56px;height:56px;border:2px solid var(--maroon);color:var(--maroon);border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;font-size:24px}
 .done .ref{font-size:13px;color:var(--muted);margin-top:10px}
 .done .ref b{color:var(--blue);letter-spacing:.06em}
