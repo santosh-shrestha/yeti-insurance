@@ -492,6 +492,16 @@ section{padding:104px 0}
 .site-footer{font-size:14.5px}
 .site-footer a{transition:color .15s}
 
+/* Photo galleries */
+.community{background:#fff}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none}
+.gallery li{aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:#e7ecf2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery li:hover img{transform:scale(1.04)}
+/* Hero photo sits under the navy overlay */
+.hero-bg img{object-position:center 40%}
+.hero-sm .hero-bg:after{background:linear-gradient(90deg,rgba(15,42,74,.95) 0%,rgba(15,42,74,.85) 60%,rgba(15,42,74,.7) 100%)}
+
 /* ---------- Responsive ---------- */
 /* Header must fit on one line: hide the phone block on mid-size laptops, collapse to the burger menu at 1080px */
 @media(max-width:1279px){
@@ -522,6 +532,7 @@ section{padding:104px 0}
   .svc-head{flex-direction:column;align-items:start}
   .photo .badge{right:16px}
   .process,.paths .wrap,.actions,.blog-grid{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr 1fr}
   .path{border-left:0;border-top:1px solid var(--line);padding:28px 0}
   .path:first-child{border-top:0}
   .path p{min-height:0}
@@ -531,6 +542,7 @@ section{padding:104px 0}
   .wrap{padding:0 20px}
   body{font-size:16.5px}
   .finder-q{grid-template-columns:1fr}
+  .gallery{gap:10px}
   .hero .wrap{padding-top:56px;padding-bottom:72px}
   .hero-sm .wrap{padding-top:44px;padding-bottom:56px}
   .lead{font-size:17.5px}

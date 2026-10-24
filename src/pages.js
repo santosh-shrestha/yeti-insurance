@@ -64,7 +64,7 @@ add({
   schema: [C.faqSchema(homeFaq), { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url + "/" }],
   body: `
 <section class="hero" style="padding:0">
-  <div class="hero-bg"><video autoplay muted loop playsinline preload="none" poster="/assets/img/hero-poster.jpg" aria-hidden="true"><source src="/assets/media/hero.mp4" type="video/mp4" onerror="this.parentNode.remove()"></video></div>
+  <div class="hero-bg"><img src="/assets/img/hero.jpg" alt="" width="960" height="600" fetchpriority="high"></div>
   <div class="wrap">
     <div>
       <p class="kicker">Serving all of Texas · Since ${site.founded}</p>
@@ -124,7 +124,7 @@ ${C.reviewsSection()}
 </div></section>
 
 <section><div class="wrap split">
-  <div class="photo rv"><img src="/assets/img/office-team.jpg" alt="The Yeti Insurance team at the Irving office" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
+  <div class="photo rv"><img src="/assets/img/office-team.jpg" alt="Yeti Insurance agents at a client event" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
   <div class="rv"><p class="kicker">Why Yeti Insurance</p><h2>A local agency with statewide reach</h2>
    <p class="lead">For ${new Date().getFullYear() - site.founded} years we've helped Texans make clear, confident decisions about their coverage.</p>
    ${C.pointsList([["We work for you, not the carrier", "We compare multiple carriers and recommend what fits your needs and budget."], ["One dedicated agent", "You'll know who to call, and that person will know your account."], ["Support at claim time", "We help you report claims and follow up with the carrier until they're resolved."], ["Annual coverage reviews", "Each year we review your policies as your business, home and family change."]], C.icon.check)}
@@ -139,6 +139,8 @@ ${C.reviewsSection()}
    <li class="rv"><b>03</b><h3>You choose</h3><p>Pick the coverage you like best. Many policies can start the same day.</p></li>
   </ol>
 </div></section>
+
+${C.communityGallery(3, true)}
 
 <section class="texas"><div class="wrap">
   <div class="rv"><p class="kicker">Areas we serve</p><h2>Serving clients across the state of Texas</h2>
@@ -215,12 +217,13 @@ add({
     ${site.milestones.filter(([y, t]) => !C.isPH(y) && !C.isPH(t)).map(([y, t]) => `<li><div><strong>${y}.</strong> ${t}</div></li>`).join("")}
     <li><div><strong>${new Date().getFullYear()}.</strong> A decade of service, rated ${site.googleRating} on Google.</div></li>
    </ol></div>
-  <div class="photo rv"><img src="/assets/img/founders.jpg" alt="Yeti Insurance founders" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
+  <div class="photo rv"><img src="/assets/img/founders.jpg" alt="The Yeti Insurance team in Irving, Texas" loading="lazy" width="800" height="1000" onerror="this.remove()"><div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
 </div></section>
 <section style="background:var(--bg)"><div class="wrap"><p class="kicker rv">How we work</p><h2 class="rv">What you can expect from us</h2>
   ${C.pointsList([["Honest advice", "We explain coverage in plain English, including what isn't covered."], ["Real choices", "We compare multiple carriers instead of selling one company's products."], ["Responsive service", "Certificates, ID cards and policy changes are usually handled the same business day."], ["Claim advocacy", "We help you report claims and follow up with the carrier."]])}
 </div></section>
 <section><div class="wrap"><p class="kicker rv">Our team</p><h2 class="rv">Meet your agents</h2>${C.teamGrid()}<p style="margin-top:28px"><a class="link" href="/about/team/">Full team page →</a></p></div></section>
+${C.communityGallery(6, true)}
 ${C.credStrip()}
 ${C.reviewsSection()}`,
 });
@@ -318,7 +321,12 @@ add({
    </ul></div>
   <div class="rv">${C.contactForm()}</div>
 </div></section>
-<section style="padding-top:0"><div class="wrap"><div class="map rv"><iframe title="Map to ${site.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${site.googleMapEmbed}"></iframe></div></div></section>`,
+<section style="padding-top:0"><div class="wrap"><p class="kicker rv">Our office</p><h2 class="rv">Visit us in Las Colinas</h2>
+  <ul class="gallery" style="margin-bottom:40px">
+   <li class="rv"><img src="/assets/img/office/building.jpg" alt="Our office building at 222 W Las Colinas Blvd, Irving" loading="lazy" width="800" height="600"></li>
+   <li class="rv"><img src="/assets/img/office/lobby.jpg" alt="Building lobby at 222 W Las Colinas Blvd" loading="lazy" width="800" height="600"></li>
+   <li class="rv"><img src="/assets/img/office/workspace.jpg" alt="Meeting space at the Yeti Insurance office" loading="lazy" width="800" height="600"></li>
+  </ul><div class="map rv"><iframe title="Map to ${site.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${site.googleMapEmbed}"></iframe></div></div></section>`,
 });
 
 /* ================= AREAS WE SERVE ================= */
