@@ -62,7 +62,9 @@ a:hover .arrow{transform:translateX(4px)}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--hdr);transition:height .2s;gap:20px}
 .site-header.scrolled .wrap{height:70px}
 .brand{display:flex;align-items:center;gap:14px;flex:none}
-.brand img{height:52px;width:auto}
+.brand img{height:68px;width:auto}
+.site-footer .brand img{height:76px}
+.site-header.scrolled .brand img{height:56px}
 .brand .mark{width:44px;height:44px;background:var(--blue);display:grid;place-items:center;border-radius:2px}
 .brand .name{font-family:var(--serif);font-size:22px;color:var(--blue);line-height:1;white-space:nowrap}
 .brand .sub{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);margin-top:5px;font-weight:600}
@@ -495,6 +497,7 @@ section{padding:104px 0}
 /* Photo galleries */
 .community{background:#fff}
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none}
+.gallery.two{grid-template-columns:1fr 1fr}
 .gallery li{aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius);background:#e7ecf2}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .gallery li:hover img{transform:scale(1.04)}
@@ -547,6 +550,7 @@ section{padding:104px 0}
   .hero-sm .wrap{padding-top:44px;padding-bottom:56px}
   .lead{font-size:17.5px}
   .site-header .wrap{height:70px}
+  .brand img{height:50px}
   .cred b{font-size:28px}
   .svc article{padding:32px 24px}
   section{padding:64px 0}

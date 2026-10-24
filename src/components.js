@@ -22,7 +22,7 @@ const icon = {
 
 function brand(variant = "navy") {
   return `<a class="brand" href="/" aria-label="${site.name} — home">
-    <img src="/assets/img/logo-${variant}.png" alt="${site.name}" width="160" height="52" onerror="this.closest('.brand').classList.add('no-img')">
+    <img src="/assets/img/logo-${variant}.png" alt="${site.name}" width="109" height="60" onerror="this.closest('.brand').classList.add('no-img')">
     <span class="fallback"><span class="mark">${icon.mark}</span><span><span class="name" style="display:block">${site.shortName}</span><span class="sub" style="display:block">Agency · Est. ${site.founded}</span></span></span>
   </a>`;
 }
@@ -188,12 +188,10 @@ const trustBar = () => `<div class="trustbar"><div class="wrap">
   <span>Local office: ${site.address.city}, TX</span>
 </div>${site.affiliations.length ? `<ul class="affil wrap">${site.affiliations.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}</div>`;
 
+// Curated: clear, professional, brand-forward photos only (no close-ups of children).
 const COMMUNITY = [
-  ["/assets/img/community/community-1.jpg", "Yeti Insurance booth at a community event in a Dallas–Fort Worth park"],
   ["/assets/img/community/community-2.jpg", "Yeti Insurance tent and team at an outdoor community event"],
   ["/assets/img/community/community-3.jpg", "Community bike ride supported by Yeti Insurance"],
-  ["/assets/img/community/community-4.jpg", "Yeti Insurance team at a local cultural festival"],
-  ["/assets/img/community/community-5.jpg", "Youth group event supported by Yeti Insurance"],
   ["/assets/img/community/community-6.jpg", "The Yeti mascot greeting families at a community event"],
 ];
 const communityGallery = (n = 6, intro = true) => `<section class="community"><div class="wrap">

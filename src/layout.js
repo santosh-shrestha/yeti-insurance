@@ -103,7 +103,7 @@ ${page.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name=
 <meta name="theme-color" content="#0f2a4a">
 <meta name="geo.region" content="US-TX">
 <meta name="geo.placename" content="${site.address.city}, Texas">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/css/main.css">
 <script>document.documentElement.className='js'</script>
