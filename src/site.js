@@ -25,7 +25,7 @@ module.exports = {
   geo: { lat: 32.8686, lng: -96.9405 },      // approx. Las Colinas, verify in Google Business Profile
   hours: { days: "Monday – Friday", open: 9, close: 18, label: "Mon–Fri 9:00 am – 6:00 pm (Central)" },
   serviceArea: "Texas",
-  license: "[XXXXXXX]",                      // Texas agency license number (required before launch)
+  license: "",                               // Kept private: leave empty and no license number is shown anywhere on the site
   licenseVerifyUrl: "https://www.tdi.texas.gov/CONSUMER/company-profiles-and-agents-for-service-of-process.html", // TDI "Verify an agent or company license"
   // Real memberships/affiliations only (e.g. "BBB Accredited Business", "Independent Insurance Agents of Texas", "Irving-Las Colinas Chamber").
   // Leave empty until confirmed — nothing is shown when empty.
@@ -60,8 +60,8 @@ module.exports = {
   ],
 
   team: [
-    { initials: "SS", name: "Shraddha Shrestha", role: "CEO & Managing Director", license: "[TX lic. #]", phone: "(469) 345-6419", tel: "+14693456419", email: "shraddha@yetiinsu.com", photo: "/assets/img/team/shraddha-shrestha.jpg", linkedin: "https://www.linkedin.com/in/shraddha-shrestha-7338a4172/" },
-    { initials: "SP", name: "Suraj Poudyal", role: "Principal Agent & Co-Owner", license: "[TX lic. #]", phone: "(214) 995-0137", tel: "+12149950137", email: "suraj@yetiinsu.com", photo: "/assets/img/team/suraj-poudyal.jpg", linkedin: "https://www.linkedin.com/in/suraj-poudyal-24a42010/" },
+    { initials: "SS", name: "Shraddha Shrestha", role: "CEO & Managing Director",phone: "(469) 345-6419", tel: "+14693456419", email: "shraddha@yetiinsu.com", photo: "/assets/img/team/shraddha-shrestha.jpg", linkedin: "https://www.linkedin.com/in/shraddha-shrestha-7338a4172/" },
+    { initials: "SP", name: "Suraj Poudyal", role: "Principal Agent & Co-Owner",phone: "(214) 995-0137", tel: "+12149950137", email: "suraj@yetiinsu.com", photo: "/assets/img/team/suraj-poudyal.jpg", linkedin: "https://www.linkedin.com/in/suraj-poudyal-24a42010/" },
   ],
 
   // About page — founder story paragraphs and milestones. Anything still in [brackets] is hidden automatically.

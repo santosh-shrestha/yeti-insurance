@@ -112,14 +112,12 @@ for (const p of built) {
 // ---- Launch checklist: settings still using placeholders (hidden on the site, but should be filled in) ----
 const { isPH } = require("./src/components");
 const todo = [];
-if (isPH(site.license)) todo.push("Agency license number (site.js → license)");
 if (isPH(site.googleReviewCount) || isPH(site.googleRatingDate)) todo.push("Google review count & date (site.js)");
 if (/maps\/search/.test(site.googleReviewsUrl)) todo.push("Direct Google reviews link (site.js → googleReviewsUrl)");
 const realCarriers = site.carriers.filter(c => !isPH(c.name));
 if (realCarriers.length < 3) todo.push(`Carriers: only ${realCarriers.length} listed — carrier strip is hidden until 3+ (site.js → carriers)`);
 if (realCarriers.some(c => isPH(c.claims))) todo.push("Carrier claim phone numbers (site.js → carriers[].claims)");
 if (!realCarriers.some(c => c.payUrl)) todo.push("Carrier payment links (site.js → carriers[].payUrl)");
-if (site.team.some(t => isPH(t.license))) todo.push("Agent license numbers (site.js → team[].license)");
 if (site.story.every(isPH)) todo.push("Founder story (site.js → story)");
 if (require("./src/components").REVIEWS_REAL === 0) todo.push("Real Google reviews (components.js → REVIEWS) — slider hidden until added");
 ["logo-navy.png", "logo-white.png", "og-image.jpg", "hero-poster.jpg"].forEach(f => { if (!fs.existsSync(path.join(ASSETS, "img", f))) todo.push(`Image: src/assets/img/${f}`); });
