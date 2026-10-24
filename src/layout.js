@@ -89,6 +89,7 @@ function layout(page) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="4fRv6pa7O4TqiUTbCxnmWBkaFUFd-YfJojLoQS0ypug">
 <title>${page.title}</title>
 <meta name="description" content="${C.esc(page.description)}">
 <link rel="canonical" href="${canonical}">
