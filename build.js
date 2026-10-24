@@ -56,6 +56,7 @@ write("robots.txt", site.indexable
 write("_redirects", [
   "/team        /about/team/   301",
   "/claim       /claims/       301",
+  "/upload      /client-service/ 301",
   "/home        /              301",
   "/blank       /              301",
 ].join("\n") + "\n");
