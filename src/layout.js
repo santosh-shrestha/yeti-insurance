@@ -110,10 +110,12 @@ ${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follo
 <link rel="stylesheet" href="/assets/css/main.css">
 <script>document.documentElement.className='js'</script>
 ${ld}
-<!-- Analytics: paste Google Analytics 4 / Tag Manager snippet here -->
-${site.googleTag ? `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=${site.googleTag}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.googleTag}');</script>` : ""}
+${site.googleTag ? `<!-- Google tag (gtag.js), loaded after the page is interactive so it doesn't slow the first paint.
+     Loads immediately on /thank-you/ pages so Google Ads conversions are never missed. -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${site.googleTag}');
+(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${site.googleTag}';document.head.appendChild(s);}
+if(/^\/thank-you\//.test(location.pathname)){go();return;}
+addEventListener('load',function(){setTimeout(go,1200);});['pointerdown','keydown','touchstart','scroll'].forEach(function(e){addEventListener(e,go,{once:true,passive:true});});})();</script>` : ""}
 </head>
 <body data-quote-thanks="/thank-you/quote/" data-hours='${JSON.stringify(site.hours.week)}'${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
@@ -188,7 +190,7 @@ ${page.noCta ? "" : C.ctaBand()}
   <div class="modal-box"><button type="button" class="modal-x" data-close aria-label="Close">×</button>${C.claimForm()}</div>
 </div>
 
-<div class="mbar"><a href="tel:${site.phoneE164}">Call</a><button type="button" class="q" data-open="quote-modal">Quote</button><a href="/claims/">Claims</a><a href="/client-service/">Service</a></div>
+<nav class="mbar" aria-label="Quick actions"><a href="tel:${site.phoneE164}">Call</a><button type="button" class="q" data-open="quote-modal">Quote</button><a href="/claims/"${page.path.startsWith("/claims/") ? ' aria-current="page"' : ""}>Claims</a><a href="/client-service/"${page.path.startsWith("/client-service/") ? ' aria-current="page"' : ""}>Service</a></nav>
 <button type="button" class="totop" aria-label="Back to top">↑</button>
 <script src="/assets/js/main.js" defer></script>
 </body>

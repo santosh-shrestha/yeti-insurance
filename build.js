@@ -29,6 +29,10 @@ function write(rel, content) {
 
 rmrf(DIST);
 copyDir(ASSETS, path.join(DIST, "assets"));
+// Minify CSS (comments + whitespace) to cut render-blocking bytes
+{ const f = path.join(DIST, "assets/css/main.css"); const css = fs.readFileSync(f, "utf8")
+    .replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").replace(/\s*([{};,>])\s*/g, "$1").replace(/;}/g, "}").trim();
+  fs.writeFileSync(f, css); }
 
 // ---- Pages ----
 const built = [];
