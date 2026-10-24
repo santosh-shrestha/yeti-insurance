@@ -23,7 +23,8 @@ module.exports = {
     country: "US",
   },
   geo: { lat: 32.8686, lng: -96.9405 },      // approx. Las Colinas, verify in Google Business Profile
-  hours: { days: "Monday – Friday", open: 9, close: 18, label: "Mon–Fri 9:00 am – 6:00 pm (Central)" },
+  // Office hours (Central). Keep in sync with the Google Business Profile. week: day → [open hour, close hour] (24h).
+  hours: { label: "Mon–Fri 10:00 am – 6:00 pm · Sat 9:00 am – 5:00 pm (Central)", week: { Mon: [10, 18], Tue: [10, 18], Wed: [10, 18], Thu: [10, 18], Fri: [10, 18], Sat: [9, 17] } },
   serviceArea: "Texas",
   license: "",                               // Kept private: leave empty and no license number is shown anywhere on the site
   licenseVerifyUrl: "https://www.tdi.texas.gov/CONSUMER/company-profiles-and-agents-for-service-of-process.html", // TDI "Verify an agent or company license"

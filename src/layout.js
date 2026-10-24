@@ -67,7 +67,7 @@ function orgSchema() {
     address: { "@type": "PostalAddress", streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.state, postalCode: site.address.zip, addressCountry: site.address.country },
     geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
     areaServed: { "@type": "State", name: "Texas" },
-    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" }],
+    openingHoursSpecification: (() => { const full = { Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday", Sat: "Saturday", Sun: "Sunday" }, g = {}; Object.entries(site.hours.week).forEach(([d, [o, c]]) => { const k = o + "-" + c; (g[k] = g[k] || []).push(full[d]); }); const hh = n => String(n).padStart(2, "0") + ":00"; return Object.entries(g).map(([k, days]) => { const [o, c] = k.split("-"); return { "@type": "OpeningHoursSpecification", dayOfWeek: days, opens: hh(o), closes: hh(c) }; }); })(),
     sameAs: Object.values(site.social),
     hasOfferCatalog: { "@type": "OfferCatalog", name: "Insurance", itemListElement: ["Commercial Insurance", "Home Insurance", "Auto Insurance"].map(n => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })) },
   };
@@ -112,7 +112,7 @@ ${page.noindex || !site.indexable ? '<meta name="robots" content="noindex, follo
 ${ld}
 <!-- Analytics: paste Google Analytics 4 / Tag Manager snippet here -->
 </head>
-<body data-hours-open="${site.hours.open}" data-hours-close="${site.hours.close}"${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
+<body data-hours='${JSON.stringify(site.hours.week)}'${site.sheetsUrl ? ` data-sheets="${site.sheetsUrl}" data-sheets-token="${site.sheetsToken}"` : ""}${page.coverage ? ` data-coverage="${page.coverage}"` : ""}>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="util"><div class="wrap">

@@ -63,8 +63,8 @@
     try {
       const p = new Intl.DateTimeFormat("en-US", { timeZone: "America/Chicago", weekday: "short", hour: "numeric", hourCycle: "h23" }).formatToParts(new Date());
       const wd = p.find(x => x.type === "weekday").value, h = +p.find(x => x.type === "hour").value % 24;
-      const o = +document.body.dataset.hoursOpen || 9, c = +document.body.dataset.hoursClose || 18;
-      open = !["Sat", "Sun"].includes(wd) && h >= o && h < c;
+      const week = JSON.parse(document.body.dataset.hours || "{}"), day = week[wd];
+      open = !!day && h >= day[0] && h < day[1];
     } catch (e) {}
     $$(".open-ind").forEach(el => { el.textContent = open ? "Open now · Call a licensed agent" : "Call a licensed agent"; el.classList.toggle("is-open", open); });
     $$(".open-dot").forEach(el => el.classList.toggle("is-open", open));
