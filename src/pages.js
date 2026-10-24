@@ -399,6 +399,7 @@ add({
   <h2 style="margin-top:8px">What happens next</h2>
   <ol class="steps-list" style="margin-top:20px"><li>Your agent reviews your details and may call with a few quick questions.</li><li>We compare quotes from multiple carriers for the best fit.</li><li>We walk you through the options. You choose, with no obligation.</li></ol>
   <p style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-maroon" href="tel:${site.phoneE164}">Call ${site.phone}</a><a class="btn btn-line" href="/">Back to home</a></p>
+  <p class="muted" style="margin-top:28px">Already a client? We'd be grateful for a <a href="${site.googleWriteReviewUrl}" target="_blank" rel="noopener">Google review</a>.</p>
 </div></section>`,
 });
 

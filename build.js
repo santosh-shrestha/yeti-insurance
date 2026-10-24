@@ -120,7 +120,6 @@ for (const p of built) {
 const { isPH } = require("./src/components");
 const todo = [];
 if (isPH(site.googleReviewCount) || isPH(site.googleRatingDate)) todo.push("Google review count & date (site.js)");
-if (/maps\/search/.test(site.googleReviewsUrl)) todo.push("Direct Google reviews link (site.js → googleReviewsUrl)");
 const realCarriers = site.carriers.filter(c => !isPH(c.name));
 if (realCarriers.length < 3) todo.push(`Carriers: only ${realCarriers.length} listed — carrier strip is hidden until 3+ (site.js → carriers)`);
 if (realCarriers.some(c => isPH(c.claims))) todo.push("Carrier claim phone numbers (site.js → carriers[].claims)");

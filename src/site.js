@@ -36,7 +36,8 @@ module.exports = {
   googleRating: "4.9",
   googleReviewCount: "77",               // number of reviews, e.g. "87"
   googleRatingDate: "October 2026",
-  googleReviewsUrl: "https://www.google.com/maps/search/?api=1&query=Yeti+Insurance+Agency+222+W+Las+Colinas+Blvd+Irving+TX+75039", // replace with direct review link
+  googleReviewsUrl: "https://g.page/r/CcKxWGnaFZLOEAI",          // opens the Business Profile with reviews
+  googleWriteReviewUrl: "https://g.page/r/CcKxWGnaFZLOEAI/review", // opens the "write a review" box
   googleMapEmbed: "https://www.google.com/maps?q=222+W+Las+Colinas+Blvd+%231650E,+Irving,+TX+75039&output=embed",
 
   social: {
