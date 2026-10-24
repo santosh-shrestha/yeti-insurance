@@ -126,7 +126,7 @@ ${C.reviewsSection()}
 </div></section>
 
 <section><div class="wrap split">
-  <div class="photo land rv"><img src="/assets/img/office-urban-towers.jpg" alt="Urban Towers in Las Colinas, home of the Yeti Insurance office in Irving, Texas" loading="lazy" width="1600" height="889"><div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
+  <div class="photo land fill rv"><img src="/assets/img/office-urban-towers.jpg" srcset="/assets/img/office-urban-towers-800.jpg 800w, /assets/img/office-urban-towers.jpg 1600w" sizes="(max-width:1000px) 92vw, 600px" alt="Urban Towers in Las Colinas, home of the Yeti Insurance office in Irving, Texas" loading="lazy" width="1600" height="889"><div class="badge"><b>${site.founded}</b><small>A decade of serving Texas businesses and families</small></div></div>
   <div class="rv"><p class="kicker">Why Yeti Insurance</p><h2>A local agency with statewide reach</h2>
    <p class="lead">For ${new Date().getFullYear() - site.founded} years we've helped Texans make clear, confident decisions about their coverage.</p>
    ${C.pointsList([["We work for you, not the carrier", "We compare multiple carriers and recommend what fits your needs and budget."], ["One dedicated agent", "You'll know who to call, and that person will know your account."], ["Support at claim time", "We help you report claims and follow up with the carrier until they're resolved."], ["Annual coverage reviews", "Each year we review your policies as your business, home and family change."]], C.icon.check)}
@@ -217,20 +217,18 @@ add({
     ${site.milestones.filter(([y, t]) => !C.isPH(y) && !C.isPH(t)).map(([y, t]) => `<li><div><strong>${y}.</strong> ${t}</div></li>`).join("")}
     <li><div><strong>${new Date().getFullYear()}.</strong> A decade of service, rated ${site.googleRating} on Google.</div></li>
    </ol></div>
-  <div class="photo land rv"><img src="/assets/img/community/booth.jpg" alt="Yeti Insurance agents at the agency's booth at a community event" loading="lazy" width="1200" height="900"><div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
+  <div class="photo land rv"><img src="/assets/img/community/booth.jpg" srcset="/assets/img/community/booth-600.jpg 600w, /assets/img/community/booth.jpg 1200w" sizes="(max-width:1000px) 92vw, 600px" alt="Yeti Insurance agents at the agency's booth at a community event" loading="lazy" width="1200" height="900"><div class="badge"><b>${new Date().getFullYear() - site.founded}</b><small>years serving Texas</small></div></div>
 </div></section>
 <section style="background:var(--bg)"><div class="wrap"><p class="kicker rv">How we work</p><h2 class="rv">What you can expect from us</h2>
   ${C.pointsList([["Honest advice", "We explain coverage in plain English, including what isn't covered."], ["Real choices", "We compare multiple carriers instead of selling one company's products."], ["Responsive service", "Certificates, ID cards and policy changes are handled promptly, often the same business day."], ["Claim advocacy", "We help you report claims and follow up with the carrier."]])}
 </div></section>
 <section><div class="wrap"><p class="kicker rv">In the community</p><h2 class="rv">Proud to be part of DFW</h2>
   <p class="lead rv" style="max-width:640px">You'll find our team at festivals, fundraisers and neighborhood events across the Metroplex, not just behind a desk.</p>
-  <div class="gallery">${[
-   ["foundation-tent.jpg", 1200, 739, "Community day with the Yeti Foundation"],
-   ["face-painting.jpg", 800, 1000, "Face painting at a local festival"],
-   ["cycling-for-a-cause.jpg", 1200, 900, "Cycling for a Cause fundraiser"],
-   ["yeti-mascot.jpg", 667, 1000, "Our yeti mascot says hello"],
-   ["cycling-riders.jpg", 1200, 904, "Riders gathering before Cycling for a Cause"],
-  ].map(([f, w, h, cap]) => `<figure class="rv"><img src="/assets/img/community/${f}" alt="${cap}" loading="lazy" width="${w}" height="${h}"><figcaption>${cap}</figcaption></figure>`).join("")}</div>
+  <div class="gallery" role="region" aria-label="Community photos" tabindex="0">${[
+   ["foundation-tent.jpg", 1200, 739, "Community day with the Yeti Foundation", "center"],
+   ["cycling-for-a-cause.jpg", 1200, 900, "Cycling for a Cause fundraiser", "center 40%"],
+   ["cycling-riders.jpg", 1200, 904, "Riders gathering before Cycling for a Cause", "center 70%"],
+  ].map(([f, w, h, cap, pos]) => `<figure class="rv"><img src="/assets/img/community/${f}" srcset="/assets/img/community/${f.replace(".jpg", "-600.jpg")} 600w, /assets/img/community/${f} 1200w" sizes="(max-width:640px) 84vw, 33vw" alt="${cap}" loading="lazy" width="${w}" height="${h}" style="object-position:${pos}"><figcaption>${cap}</figcaption></figure>`).join("")}</div>
 </div></section>
 <section><div class="wrap"><p class="kicker rv">Our team</p><h2 class="rv">Meet your agents</h2>${C.teamGrid()}<p style="margin-top:28px"><a class="link" href="/about/team/">Full team page →</a></p></div></section>
 ${C.credStrip()}
@@ -330,7 +328,7 @@ add({
    </ul></div>
   <div class="rv">${C.contactForm()}</div>
 </div></section>
-<section style="padding-top:0"><div class="wrap visit"><figure class="rv"><img src="/assets/img/office-urban-towers.jpg" alt="Urban Towers at 222 W Las Colinas Blvd, Irving, Texas" loading="lazy" width="1600" height="889"><figcaption>Our office is in Urban Towers, Suite 1650E, in Las Colinas.</figcaption></figure><div class="map rv"><iframe title="Map to ${site.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${site.googleMapEmbed}"></iframe></div></div></section>`,
+<section style="padding-top:0"><div class="wrap visit"><figure class="rv"><img src="/assets/img/office-urban-towers.jpg" srcset="/assets/img/office-urban-towers-800.jpg 800w, /assets/img/office-urban-towers.jpg 1600w" sizes="(max-width:1000px) 92vw, 600px" alt="Urban Towers at 222 W Las Colinas Blvd, Irving, Texas" loading="lazy" width="1600" height="889"><figcaption>Our office is in Urban Towers, Suite 1650E, in Las Colinas.</figcaption></figure><div class="map rv"><iframe title="Map to ${site.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${site.googleMapEmbed}"></iframe></div></div></section>`,
 });
 
 /* ================= AREAS WE SERVE ================= */
